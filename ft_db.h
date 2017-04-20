@@ -6,13 +6,16 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/19 20:52:58 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/19 20:59:00 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef FT_DB_H
 #define FT_DB_H
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 typedef struct	s_dbnfo
 {

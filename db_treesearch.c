@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   treesearch.c                                       :+:      :+:    :+:   */
+/*   db_treesearch.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:08:42 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/18 12:11:32 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/19 20:59:37 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/ft_ls.h"
+#include "ft_db.h"
 
-int		ls_treesearch(t_node *tree, char *name)
+int		ls_treesearch(t_dbnode *tree, char *name)
 {
-	t_node	*tmp;
+	t_dbnode	*tmp;
 
 	tmp = tree;
 	while (tmp)
 	{
 		if (name == tmp->name)
 			return (1);
-		if (ft_strcmp(name, tmp->name) > 0)
+		if (strcmp(name, tmp->name) > 0)
 			tmp = tmp->right;
 		else
 			tmp = tmp->left;

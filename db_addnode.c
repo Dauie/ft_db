@@ -6,16 +6,14 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:00:51 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/19 20:53:21 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/19 21:00:43 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*42 - Robert Wyatt Lutt - ft_ls*/
 
 #include "ft_db.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+
 
 int		ls_getmeta(t_dbnode *elem, char *name)
 {
