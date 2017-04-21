@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 15:23:46 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/21 16:13:37 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 typedef	enum	s_mode
 {
+	NRML,
 	ADD_TBL,
 	ADD_NTRY,
 	EDIT_NTRY,
@@ -31,10 +32,11 @@ typedef	enum	s_mode
 typedef struct	s_dbnfo
 {
 	char	**args;
-	char	*t_name;
-	char	*e_name;
+	char	*a_nam;
+	char	*a_val;
+	bool	n_actn;
+	bool	v_actn;
 	t_mode	action;
-	
 }				t_dbnfo;
 
 typedef struct	s_ndata
@@ -47,12 +49,12 @@ typedef struct	s_ndata
 
 typedef struct s_dbnode
 {
-	int			wght;
-	char		*tbl_name;
-	s_dbnode	*left;
-	s_dbnode	*right;
-	t_ndata		data;
-}				t_dbnode;
+	int				wght;
+	char			*tbl_name;
+	struct s_dbnode	*left;
+	struct s_dbnode	*right;
+	t_ndata			data;
+}					t_dbnode;
 
 typedef struct s_tridbnode
 {
@@ -63,8 +65,8 @@ typedef struct s_tridbnode
 
 void	db_initdbnfo(t_dbnfo *db);
 void	db_initnode(t_dbnode *elem);
-void 	ls_addtnoden(t_dbnode **tree, char *name, char type, t_dbnfo *db);
-void 	ls_addtnodet(t_dbnode **tree, char *name, char type, t_dbnfo *db);
+void 	ls_addtnoden(t_dbnode **tree, char *name, char type);
+void 	ls_addtnodet(t_dbnode **tree, char *name, char type);
 void	ls_cleartree(t_dbnode **tree);
 void	db_initdbnfo(t_dbnfo *db);
 void 	ls_printtree(t_dbnode *tree);

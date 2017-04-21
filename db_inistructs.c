@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 20:54:58 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 12:28:51 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/21 16:08:20 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	db_initdbnfo(t_dbnfo *db)
 {
-	db->addtbl_f = false;
-	db->deltbl_f = false;
-	db->addntry_f = false;
-	db->delntry_f = false;
-	db->editntry_f = false;
+	db->args = NULL;
+	db->a_nam = NULL;
+	db->a_val = NULL;
+	db->n_actn = false;
+	db->v_actn = false;
+	db->action = NRML;
 }
-
 
 void	db_initnode(t_dbnode *elem)
 {
