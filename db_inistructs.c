@@ -6,13 +6,13 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 20:54:58 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 12:25:11 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/21 12:28:51 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-void	db_initdb(t_dbnfo *db)
+void	db_initdbnfo(t_dbnfo *db)
 {
 	db->addtbl_f = false;
 	db->deltbl_f = false;
