@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:00:51 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/19 21:00:43 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/20 18:25:59 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int		ls_getmeta(t_dbnode *elem, char *name)
 	return (1);
 }
 
-static t_dbnode *prep_addnode (char *name, char type, t_dbnfo *db)
+static t_dbnode *prep_addnode (char *name, int wght, t_dbnfo *db)
 {
 	t_dbnode *elem;
 
 	if (!(elem = (t_dbnode *)malloc(sizeof(t_dbnode))))
 		return (NULL);
 	db_initnode(elem);
-	elem->name = strdup(name);
-	elem->type = type;
+	elem->tbl_name = strdup(name);
+	elem->wght = wght;
 	return (elem);
 }
 
@@ -44,7 +44,7 @@ void 		ls_addtnoden(t_dbnode **tree, char *name, char type, t_dbnfo *db)
 		while (tri.ttmp)
 		{
 			tri.ntmp = tri.ttmp;
-			if (tri.ttmp && strcmp(name, tri.ttmp->name) < 0)
+			if (tri.ttmp && strcmp(name, tri.ttmp->tbl_name) < 0)
 			{
 				tri.ttmp = tri.ttmp->left;
 				if (!tri.ttmp)
