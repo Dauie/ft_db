@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/20 18:36:49 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/21 12:25:51 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,8 @@ typedef struct s_tridbnode
 	t_dbnode	*ntmp;
 	t_dbnode	*ttmp;
 }				t_tridbnode;
+
+void	db_initdb(t_dbnfo *db);
+void	db_initnode(t_dbnode *elem);
 
 #endif
