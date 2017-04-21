@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/20 18:27:40 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/20 18:36:49 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,15 @@ typedef struct	s_ndata
 	long		**tbl_mtime;
 	char		**bse_tbl;
 	intmax_t	**num_tbl;
-	void		**tbl;
 }				t_ndata;
 
 typedef struct s_dbnode
 {
 	int			wght;
-	t_ndata		data;
 	char		*tbl_name;
 	s_dbnode	*left;
 	s_dbnode	*right;
+	t_ndata		data;
 }				t_dbnode;
 
 typedef struct s_tridbnode
