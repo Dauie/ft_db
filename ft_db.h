@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 12:28:46 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/21 14:51:30 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 typedef struct	s_dbnfo
 {
+	char	**args;
 	bool	addtbl_f;
 	bool	deltbl_f;
 	bool	addntry_f;

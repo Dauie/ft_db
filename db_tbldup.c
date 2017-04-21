@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_db.c                                            :+:      :+:    :+:   */
+/*   db_tbldup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 14:53:32 by rlutt            ###   ########.fr       */
+/*   Created: 2017/02/11 15:26:49 by rlutt             #+#    #+#             */
+/*   Updated: 2017/04/21 14:55:23 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-int			main(int ac, char **av)
+char		**ft_tbldup(char **tbl, int len)
 {
-	t_dbnfo		db;
+	int		i;
+	char	**res;
+	char	**tmp;
 
-	if (ac > 1)
+	i = -1;
+	res = (char **)malloc(sizeof(char *) * (len + 1));
+	tmp = res;
+	while (++i < len)
 	{
-		db_inidbnfo(&db);
-		db.args = (ac, &av[1], &db);
-
-		/*1.Get arguments from user.
-		*  2.If there is DB already. Load it.
-		*   3. Carry out operation given by user.
-		*/
-		return (1);
+		*tmp = strdup(*tbl);
+		tbl++;
+		tmp++;
 	}
-	return (0);
+	return (res);
 }
