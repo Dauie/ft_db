@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 14:53:32 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/21 15:03:12 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int			main(int ac, char **av)
 
 	if (ac > 1)
 	{
-		db_inidbnfo(&db);
-		db.args = (ac, &av[1], &db);
+		db_initdbnfo(&db);
+		db.args = db_tbldup(&av[1], ac - 1);
 
 		/*1.Get arguments from user.
 		*  2.If there is DB already. Load it.

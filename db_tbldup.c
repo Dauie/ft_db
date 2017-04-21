@@ -6,13 +6,13 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 15:26:49 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 14:55:23 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/21 15:02:50 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-char		**ft_tbldup(char **tbl, int len)
+char		**db_tbldup(char **tbl, int len)
 {
 	int		i;
 	char	**res;
