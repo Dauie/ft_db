@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 15:03:03 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/21 15:23:46 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,22 @@
 #include <stdio.h>
 #include <string.h>
 
+typedef	enum	s_mode
+{
+	ADD_TBL,
+	ADD_NTRY,
+	EDIT_NTRY,
+	EDIT_TBL,
+	DEL_NTRY,
+	DEL_TBL
+}				t_mode;
 
 typedef struct	s_dbnfo
 {
 	char	**args;
-	bool	addtbl_f;
-	bool	deltbl_f;
-	bool	addntry_f;
-	bool	delntry_f;
-	bool	editntry_f;
+	char	*t_name;
+	char	*e_name;
+	t_mode	action;
 	
 }				t_dbnfo;
 
