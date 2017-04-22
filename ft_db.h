@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 17:19:55 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/21 19:35:43 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ typedef	enum	s_mode
 	NRML,
 	ADD_TBL,
 	ADD_NTRY,
-	EDIT_NTRY,
+	EDIT_RNTRY,
+	EDIT_APNTRY,
 	EDIT_TBL,
 	DEL_NTRY,
 	DEL_TBL
@@ -32,12 +33,14 @@ typedef	enum	s_mode
 typedef struct	s_dbnfo
 {
 	char	**args;
-	char	*a_tbln;
-	char	*a_keyn;
-	char	*a_val;
-	bool	t_actn;
-	bool	n_actn;
-	bool	v_actn;
+	char	*a_tblnam;
+	char	*a_keynam;
+	char	**a_val;
+	char	**a_nval;
+	bool	tbln_act;
+	bool	key_act;
+	bool	val_act;
+	bool	nval_act;
 	t_mode	mode;
 }				t_dbnfo;
 
