@@ -6,13 +6,13 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:08:42 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 15:00:32 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 13:31:17 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-int		ls_treesearch(t_dbnode *tree, char *name)
+int		db_search_tnam(t_dbnode *tree, char *name)
 {
 	t_dbnode	*tmp;
 

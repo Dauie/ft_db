@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 12:33:42 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 13:35:59 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,30 @@ static int	db_parseflag(t_dbnfo *db)
 		}
 		else
 			return (0);
+}
 
+static int		db_verifyinput(t_dbnfo *db)
+{
+	if (db->tblnam && db->keynam && db->val)
+		return (0);
+	else if (!db->tblnam)
+		printf("ft_db: table name is required\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n");
+	else if (!db->keynam)
+		printf("ft_db: key name is required\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n");
+	else if (!db->val && db->mode != DEL_TBL)
+		printf("ft_db: value name is required\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n");
+	return(-1);
 }
 
 int		db_parseargs(t_dbnfo *db, int len)
 {
 	int i = 0;
-	
+	time(&db->agtime);
 	if (!(i = db_parseflag(db)))
-		printf("ft_db: illegal option -- %s\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]", db->args[i]);
-	while (++i < len--)
+		printf("ft_db: illegal option -- %s\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n", db->args[i]);
+	while (i < len)
 	{ 
-		if (db->mode > 0 && db->tbln_act == false && db->key_act == false 
-				&& db->val_act == false && db->nval_act == false)
-			db->tbln_act = true;
-		else if (db->tbln_act == true && db->mode > 0)
+		if (db->tbln_act == true && db->mode > 0)
 		{
 			db->tblnam = strdup(db->args[i]);
 			db->tbln_act = false;
@@ -62,7 +71,10 @@ int		db_parseargs(t_dbnfo *db, int len)
 		else if (db->val_act == true && db->mode > 0)
 		{
 			if (db->mode != EDIT_RNTRY && db->mode != EDIT_APNTRY)
-				db->val = db_tbldup(&db->args[i], len);
+			{
+				db->val = db_tbldup(&db->args[i], i - len);
+				break;
+			}
 			else
 				*db->val = strdup(db->args[i]);
 			db->val_act = false;
@@ -71,8 +83,9 @@ int		db_parseargs(t_dbnfo *db, int len)
 		}
 		else if (db->nval_act == true)
 			db->nval = db_tbldup(&db->args[i], len);
+		i++;
 	}
-	return (1);
+	return (db_verifyinput(db));
 }
 
 int			main(int ac, char **av)
@@ -86,16 +99,20 @@ int			main(int ac, char **av)
 		db.args = db_tbldup(&av[1], ac - 1);
 		db_parseargs(&db, ac - 1);
 		if (db.tblnam)
-			printf("%s",db.tblnam);
+			printf("tbln: %s\n",db.tblnam);
 		if (db.keynam)
-			printf("%s",db.keynam);
+			printf("keynam: %s\n",db.keynam);
+		if (db.val)
+			printf("val: %s\n", *db.val);
+		if (db.nval)
+			printf("nval: %s\n", *db.nval);
 		/*
 		*  2.If there is DB already. Load it.
 		*   3. Carry out operation given by user.
 		*/
 		return (1);
 	}
-	printf("usage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]");
-
+	else
+		printf("usage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n");
 	return (0);
 }
