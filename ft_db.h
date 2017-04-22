@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 19:35:43 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 11:43:46 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ typedef struct s_dbnode
 {
 	int				wght;
 	char			*tbl_name;
-	t_entry			**tbl;
-	long		tbl_ctime;
-	long		**tbl_mtime;
+	t_entry			*tbl;
+	long			tbl_ctime;
+	long			**tbl_mtime;
 	struct s_dbnode	*left;
 	struct s_dbnode	*right;
 }					t_dbnode;
@@ -79,6 +79,6 @@ void 	ls_printtree(t_dbnode *tree);
 void 	ls_revprinttree(t_dbnode *tree);
 char	**db_tbldup(char **tbl, int len);
 int		ls_treesearch(t_dbnode *tree, char *name);
-t_dbnode *db_loaddata(*t_dbnfo);
+t_dbnode *db_loaddata(t_dbnfo *db);
 
 #endif

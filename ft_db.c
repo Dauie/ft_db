@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 20:12:55 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 12:06:54 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,28 @@ int		db_parseargs(t_dbnfo *db, int len)
 
 	while (++i < len--)
 	{
-		if (db->mode > 0 && db->tbln_act == false && db->key_act == false 
+		if (db->args[i][0] == '-')
+		{
+			if (strcmp(db->args[i], "-at") == 0)
+				db->mode = ADD_TBL;
+			else if (strcmp(db->args[i], "-ae") == 0)
+				db->mode = ADD_NTRY;
+			else if (strcmp(db->args[i], "-et") == 0)
+				db->mode = EDIT_TBL;
+			else if (strcmp(db->args[i], "-ee") == 0)
+				db->mode = EDIT_RNTRY;
+			else if (strcmp(db->args[i], "-dt") == 0)
+				db->mode = DEL_TBL;
+			else if (strcmp(db->args[i], "-de") == 0)
+				db->mode = DEL_NTRY;
+			else
+				printf("ft_db: illegal option -- %s\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]",db->args[i]);
+			continue ;
+		}
+		else if (db->mode > 0 && db->tbln_act == false && db->key_act == false 
 				&& db->val_act == false && db->nval_act == false)
 			db->tbln_act = true;
-		if (db->tbln_act == true && db->mode > 0)
+		else if (db->tbln_act == true && db->mode > 0)
 		{
 			db->a_tblnam = strdup(db->args[i]);
 			db->tbln_act = false;
@@ -45,20 +63,6 @@ int		db_parseargs(t_dbnfo *db, int len)
 		}
 		else if (db->nval_act == true)
 			db->a_nval = db_tbldup(&db->args[i], len);
-		else if (strcmp(db->args[i], "-at") == 0)
-			db->mode = ADD_TBL;
-		else if (strcmp(db->args[i], "-ae") == 0)
-			db->mode = ADD_NTRY;
-		else if (strcmp(db->args[i], "-et") == 0)
-			db->mode = EDIT_TBL;
-		else if (strcmp(db->args[i], "-ee") == 0)
-			db->mode = EDIT_RNTRY;
-		else if (strcmp(db->args[i], "-dt") == 0)
-			db->mode = DEL_TBL;
-		else if (strcmp(db->args[i], "-de") == 0)
-			db->mode = DEL_NTRY;
-		else
-			printf("ft_db: illegal option -- %s\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]", db->args[i]);
 	}
 	return (1);
 }
@@ -66,21 +70,24 @@ int		db_parseargs(t_dbnfo *db, int len)
 int			main(int ac, char **av)
 {
 	t_dbnfo		db;
-	t_dbnode	*tree;
+	/*t_dbnode	*tree;*/
 
 	if (ac > 1)
 	{
 		db_initdbnfo(&db);
 		db.args = db_tbldup(&av[1], ac - 1);
 		db_parseargs(&db, ac - 1);
-		tree = db_loaddata(&db);
-		printf("name: %s, value: %s\n", db.a_tblnam, *db.a_val);
-		
+		if (db.a_tblnam)
+			printf("%s",db.a_tblnam);
+		if (db.a_keynam)
+			printf("%s",db.a_keynam);
 		/*
 		*  2.If there is DB already. Load it.
 		*   3. Carry out operation given by user.
 		*/
 		return (1);
 	}
+	printf("usage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]");
+
 	return (0);
 }
