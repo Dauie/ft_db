@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 20:54:58 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 12:35:05 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 16:04:47 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	db_initdbnfo(t_dbnfo *db)
 	db->tblnam = NULL;
 	db->keynam = NULL;
 	db->val = NULL;
+	db->nval = NULL;
 	db->tbln_act = false;
 	db->key_act = false;
 	db->val_act = false;

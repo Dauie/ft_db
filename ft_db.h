@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 12:34:54 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 16:49:54 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,21 @@ typedef struct	s_dbnfo
 	t_mode	mode;
 }				t_dbnfo;
 
-typedef struct	s_entry
+typedef struct	s_entrynode
 {
-	char		*key;
-	char		**cmembr;
-	intmax_t	**nmembr;
-}				t_entry;
+	char				*ename;
+	time_t				*emodtime;
+	char				**cmembr;
+	intmax_t			**nmembr;
+	struct s_entrynode	*left;
+	struct s_entrynode	*right;
+}						t_entryn;
 
 typedef struct s_dbnode
 {
 	int				wght;
 	char			*tbl_name;
-	t_entry			*tbl;
 	long			tbl_ctime;
-	long			**tbl_mtime;
 	struct s_dbnode	*left;
 	struct s_dbnode	*right;
 }					t_dbnode;

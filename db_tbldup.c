@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 15:26:49 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 13:24:47 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 16:28:35 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char		**db_tbldup(char **tbl, int len)
 	char	**tmp;
 
 	i = -1;
-	res = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!(res = (char **)malloc(sizeof(char *) * (len + 1))))
+		return (NULL);
 	bzero((void*)res, sizeof(char *) * (len + 1));
 	tmp = res;
 	while (++i < len)
