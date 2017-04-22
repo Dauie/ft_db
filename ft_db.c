@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 17:20:57 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/21 17:24:50 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		db_parseargs(t_dbnfo *db, int len)
 		else if (strcmp(db->args[i], "-de") == 0)
 			db->mode = DEL_NTRY;
 		else
-			printf("Usage:\n \"./ft_db [-at, -ae, -et, -ee, -dt, -de] [table] [entry] [value]\"\n--help for more\n");
+			printf("Usage:\"./ft_db [-at, -ae, -et, -ee, -dt, -de] [table] [entry] [value]\"\n--help for more\n");
 		if (db->mode > 0 && db->t_actn == false && db->n_actn == false && db->v_actn == false)
 			db->t_actn = true;
 	}
