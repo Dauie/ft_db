@@ -76,4 +76,6 @@ void 	ls_printtree(t_dbnode *tree);
 void 	ls_revprinttree(t_dbnode *tree);
 char	**db_tbldup(char **tbl, int len);
 int		ls_treesearch(t_dbnode *tree, char *name);
+t_dbnode *db_loaddata(*t_dbnfo);
+
 #endif
