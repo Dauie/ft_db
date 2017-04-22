@@ -6,37 +6,45 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 12:06:54 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 12:22:38 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
+static int	db_parseflag(t_dbnfo *db)
+{
+		if (strcmp(db->args[0], "-at") == 0)
+			db->mode = ADD_TBL;
+		else if (strcmp(db->args[0], "-ae") == 0)
+			db->mode = ADD_NTRY;
+		else if (strcmp(db->args[0], "-et") == 0)
+			db->mode = EDIT_TBL;
+		else if (strcmp(db->args[0], "-ee") == 0)
+			db->mode = EDIT_RNTRY;
+		else if (strcmp(db->args[0], "-dt") == 0)
+			db->mode = DEL_TBL;
+		else if (strcmp(db->args[0], "-de") == 0)
+			db->mode = DEL_NTRY;
+		if (db->mode > 0)
+		{	
+			db->tbln_act = true;
+			return (1);
+		}
+		else
+			return (0);
+
+}
+
 int		db_parseargs(t_dbnfo *db, int len)
 {
-	int i = -1;
-
+	int i = 0;
+	
+	if (!(i = db_parseflag(db)))
+		printf("ft_db: illegal option -- %s\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]", db->args[i]);
 	while (++i < len--)
-	{
-		if (db->args[i][0] == '-')
-		{
-			if (strcmp(db->args[i], "-at") == 0)
-				db->mode = ADD_TBL;
-			else if (strcmp(db->args[i], "-ae") == 0)
-				db->mode = ADD_NTRY;
-			else if (strcmp(db->args[i], "-et") == 0)
-				db->mode = EDIT_TBL;
-			else if (strcmp(db->args[i], "-ee") == 0)
-				db->mode = EDIT_RNTRY;
-			else if (strcmp(db->args[i], "-dt") == 0)
-				db->mode = DEL_TBL;
-			else if (strcmp(db->args[i], "-de") == 0)
-				db->mode = DEL_NTRY;
-			else
-				printf("ft_db: illegal option -- %s\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]",db->args[i]);
-			continue ;
-		}
-		else if (db->mode > 0 && db->tbln_act == false && db->key_act == false 
+	{ 
+		if (db->mode > 0 && db->tbln_act == false && db->key_act == false 
 				&& db->val_act == false && db->nval_act == false)
 			db->tbln_act = true;
 		else if (db->tbln_act == true && db->mode > 0)
