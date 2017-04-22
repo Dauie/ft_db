@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:00:51 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/21 16:13:05 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/21 17:23:17 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void 		ls_addtnodet(t_dbnode **tree, char *name, char type)
 		while (tri.ttmp)
 		{
 			tri.ntmp = tri.ttmp;
-			if (tri.ttmp && tri.elem->data.tbl_ctime < tri.ttmp->data.tbl_ctime)
+			if (tri.ttmp && tri.elem->tbl_ctime < tri.ttmp->tbl_ctime)
 			{
 				tri.ttmp = tri.ttmp->left;
 				if (!tri.ttmp)
