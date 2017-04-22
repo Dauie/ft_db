@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 11:43:46 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 12:34:54 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 typedef	enum	s_mode
 {
@@ -33,10 +34,11 @@ typedef	enum	s_mode
 typedef struct	s_dbnfo
 {
 	char	**args;
-	char	*a_tblnam;
-	char	*a_keynam;
-	char	**a_val;
-	char	**a_nval;
+	time_t	agtime;
+	char	*tblnam;
+	char	*keynam;
+	char	**val;
+	char	**nval;
 	bool	tbln_act;
 	bool	key_act;
 	bool	val_act;
