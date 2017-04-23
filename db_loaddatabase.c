@@ -16,16 +16,17 @@ t_dbnode	*db_loaddatabase(t_dbnfo *db)
 	}
 	else
 	{
-		strcpy(t_tree->tbl_name, db.tbl_nam);
+		strcpy(t_tree->tbl_name, db->tbl_nam);
 		time(&t_tree->tbl_ctime);
 		time(&t_tree->tbl_mtime);
-		if (!(db->entries = db_memalloc(sizeof(db_enode))))
+		if (!(t_tree->entries = db_memalloc(sizeof(t_enode))))
 			return (NULL);
-		db_initenode(&db->entries);
-		strcpy(db->entries->ename, db->keynam);
-		time(&entries->emodtime);
-		time(&entries->ecretime);
-		entries->cmber = db->val;
+		db_initenode(&t_tree->entries);
+		strcpy(t_tree->entries->ename, db->key_nam);
+		time(&t_tree->entries->emodtime);
+		time(&t_tree->entries->ecretime);
+		t_tree->entries->cmembr = db->val;
+		db_savedb(db, t_tree);
 	}
 	return(t_tree);
 }

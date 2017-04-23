@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 18:41:42 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 19:09:37 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ typedef struct	s_entrynode
 	intmax_t			**nmembr;
 	struct s_entrynode	*left;
 	struct s_entrynode	*right;
-}						t_entryn;
+}						t_enode;
 
 typedef struct s_dbnode
 {
 	char			tbl_name[MXNAMLEN];
 	time_t			tbl_ctime;
 	time_t			tbl_mtime;
-	t_entryn		*entries;
+	t_enode		*entries;
 	char			lmmbr[MXNAMLEN];
 	struct s_dbnode	*left;
 	struct s_dbnode	*right;
