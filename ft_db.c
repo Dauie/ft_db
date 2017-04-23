@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 16:29:04 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 17:50:41 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,9 @@ int		db_parseargs(t_dbnfo *db, int len)
 int			main(int ac, char **av)
 {
 	t_dbnfo		db;
-	/*t_dbnode	*tree;*/
-
+	t_dbnode	*tree;
+	
+	tree = NULL;
 	if (ac > 1)
 	{
 		db_initdbnfo(&db);

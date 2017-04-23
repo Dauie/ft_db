@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 16:49:54 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 17:37:41 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+
+#define MXNAMLEN 42
 
 typedef	enum	s_mode
 {
@@ -48,8 +50,9 @@ typedef struct	s_dbnfo
 
 typedef struct	s_entrynode
 {
-	char				*ename;
-	time_t				*emodtime;
+	char				ename[MXNAMLEN];
+	time_t				emodtime;
+	time_t				ecretime;
 	char				**cmembr;
 	intmax_t			**nmembr;
 	struct s_entrynode	*left;
@@ -58,9 +61,11 @@ typedef struct	s_entrynode
 
 typedef struct s_dbnode
 {
-	int				wght;
-	char			*tbl_name;
-	long			tbl_ctime;
+	char			tbl_name[MXNAMLEN];
+	time_t			tbl_ctime;
+	time_t			tbl_mtime;
+	t_entryn		entry;
+	char			lmmbr[MXNAMLEN];
 	struct s_dbnode	*left;
 	struct s_dbnode	*right;
 }					t_dbnode;

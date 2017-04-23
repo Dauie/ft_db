@@ -13,16 +13,14 @@
 		 -----------------------
 
 		 -----------------------
-		|*table_name|
-		|*weight|
-		|*table_creation_time|
-		|*table_last_mod_time|
-		|*member_last_modified|
-		||
-		||
-		||
-		||
+		|*entry_name			|
+		|*table_creation_time	|
+		|*table_last_mod_time	|
+		|*member_last_modified	|
+		|member..				|
+		|member..				|
+		|						|
+		|						|
+		|						|
+		|						|
 		 -----------------------
-
-
-
