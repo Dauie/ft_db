@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 18:13:38 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 18:41:42 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ typedef struct s_tridbnode
 }				t_tridbnode;
 
 void	db_initdbnfo(t_dbnfo *db);
-void	db_initnode(t_dbnode *elem);
-void 	ls_addtnoden(t_dbnode **tree, char *name, char type);
-void 	ls_addtnodet(t_dbnode **tree, char *name, char type);
+void	db_initdbnode(t_dbnode *elem);
+void 	ls_addtnoden(t_dbnode **tree, char *name);
+void 	ls_addtnodet(t_dbnode **tree, char *name);
 void	ls_cleartree(t_dbnode **tree);
 void	db_initdbnfo(t_dbnfo *db);
 void 	ls_printtree(t_dbnode *tree);

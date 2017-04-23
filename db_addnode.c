@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:00:51 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 17:55:33 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 18:41:25 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 #include "ft_db.h"
 
-static t_dbnode *prep_addnode (char *name, int wght)
+static t_dbnode *prep_addnode (char *name)
 {
 	t_dbnode *elem;
 
 	if (!(elem = (t_dbnode *)malloc(sizeof(t_dbnode))))
 		return (NULL);
-	db_initnode(elem);
+	db_initdbnode(elem);
 	strcpy(name, elem->tbl_name);
 	return (elem);
 }
 
-void 		ls_addtnoden(t_dbnode **tree, char *name, char type)
+void 		ls_addtnoden(t_dbnode **tree, char *name)
 {
 	t_tridbnode		tri;
 
 	tri.ttmp = *tree;
-	tri.elem = prep_addnode(name, type);
+	tri.elem = prep_addnode(name);
 	if (tri.ttmp)
 	{
 		while (tri.ttmp)
@@ -54,12 +54,12 @@ void 		ls_addtnoden(t_dbnode **tree, char *name, char type)
 		*tree = tri.elem;
 }
 
-void 		ls_addtnodet(t_dbnode **tree, char *name, char type)
+void 		ls_addtnodet(t_dbnode **tree, char *name)
 {
 	t_tridbnode		tri;
 
 	tri.ttmp = *tree;
-	tri.elem = prep_addnode(name, type);
+	tri.elem = prep_addnode(name);
 	if (tri.ttmp)
 	{
 		while (tri.ttmp)
