@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 20:54:58 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 17:30:32 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 18:05:40 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,20 @@ void	db_initdbnfo(t_dbnfo *db)
 	db->mode = NRML;
 }
 
-void	db_initnode(t_dbnode *elem)
+void	db_initdbnode(t_dbnode *elem)
 {
-	elem->wght = 0;
 	elem->tbl_ctime = 0;
 	elem->tbl_mtime = 0;
-	elem->tbl.left = NULL;
-	elem->tbl.right = NULL;
-	elem->tbl.emodtime = 0;
-	elem->tbl.cmembr = NULL;
-	elem->tbl.nmembr = 0;
 	elem->left = NULL;
+	elem->entries = NULL;
 	elem->right = NULL;
+}
+
+void	db_initenode(t_entryn *entry)
+{
+	entry->left = NULL;
+	entry->right = NULL;
+	entry->emodtime = 0;
+	entry->cmembr = NULL;
+	entry->nmembr = 0;
 }

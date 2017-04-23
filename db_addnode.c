@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:00:51 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 17:08:06 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/22 17:55:33 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static t_dbnode *prep_addnode (char *name, int wght)
 		return (NULL);
 	db_initnode(elem);
 	strcpy(name, elem->tbl_name);
-	elem->wght = wght;
 	return (elem);
 }
 
