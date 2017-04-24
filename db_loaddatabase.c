@@ -1,5 +1,10 @@
 #include "ft_db.h"
 
+void		db_populatedb(t_dbnode **t_tree, t_dbnfo *db, FILE *p_file)
+{
+	fscanf(p_file, "%s %s/n", (*t_tree)->tbl_name), (*t_tree)->entries->ename;
+}
+
 t_dbnode	*db_loaddatabase(t_dbnfo *db)
 {
 	t_dbnode *t_tree;
@@ -10,8 +15,10 @@ t_dbnode	*db_loaddatabase(t_dbnfo *db)
 	p_file = fopen( "rickytickytappy.db", "r");
 	if (p_file)
 	{
-		db_populatedb();
+		db_populatedb(&t_tree, db, p_file);
 		fclose(p_file);
+		time(&t_tree->tbl_ctime);
+		time(&t_tree->tbl_mtime);
 		return (t_tree);
 	}
 	else
