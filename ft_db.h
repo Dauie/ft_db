@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 19:09:37 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/24 13:43:21 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,18 @@ typedef	enum	s_mode
 
 typedef struct	s_dbnfo
 {
-	char	**args;
-	time_t	agtime;
-	char	*tbl_nam;
-	char	*key_nam;
-	char	**val;
-	char	**nval;
-	bool	tbln_act;
-	bool	key_act;
-	bool	val_act;
-	bool	nval_act;
-	t_mode	mode;
+	char		**args;
+	time_t		agtime;
+	char		*tbl_nam;
+	char		*key_nam;
+	char		**val;
+	char		**nval;
+	bool		tbln_act;
+	bool		key_act;
+	bool		val_act;
+	bool		nval_act;
+	char		*tblnum;
+	t_mode		mode;
 }				t_dbnfo;
 
 typedef struct	s_entrynode
@@ -64,7 +65,7 @@ typedef struct s_dbnode
 	char			tbl_name[MXNAMLEN];
 	time_t			tbl_ctime;
 	time_t			tbl_mtime;
-	t_enode		*entries;
+	t_enode			*entries;
 	char			lmmbr[MXNAMLEN];
 	struct s_dbnode	*left;
 	struct s_dbnode	*right;
