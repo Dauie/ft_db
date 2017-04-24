@@ -31,7 +31,7 @@ void	db_printtblmeta(t_dbnode **t_tree, char *tbl_name)
 /*Prints the table's entry names*/
 void	db_printtbl(t_dbnode **t_tree, char *tbl_name)
 {
-
+	printf("%s\n", tbl_name);
 }
 /*prints a entry's metadata*/
 void	db_printentrymeta(t_dbnode **t_tree, char *ename)
@@ -41,6 +41,10 @@ void	db_printentrymeta(t_dbnode **t_tree, char *ename)
 /*Prints the entry's values*/
 void	db_printentry(t_dbnode *t_tree, char *ename)
 {
-
+	printf("%s\n", ename);
+	printf("%lld\n", (long long)t_tree->entries->emodtime);
+	printf("%lld\n", (long long)t_tree->entries->ecretime);
+	printf("%lld\n", (long long)t_tree->entries->nmembr);
+	printf("%s\n", (char *)t_tree->entries->cmembr);
 }
 
