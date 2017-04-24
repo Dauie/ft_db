@@ -2,10 +2,18 @@
 
 void			db_populatedb(t_dbnode *t_tree, t_dbnfo *db, FILE *p_file)
 {
+	char	*tmp;
+
 	/*1st Line # of members*/
-	fscanf(p_file, "%s", db->tblnum);
-	/*DB Creation Time*/
-	fscanf(p_file, "%s", db-> );
+	fscanf(p_file, "%s", tmp);
+	t_tree->tblamt = atoi(tmp);
+	fscanf(p_file, "%s", tmp);
+	t_tree->tbl_ctime = atoi(tmp);
+	fscanf(p_file, "%s", tmp);
+	t_tree->tbl_mtime = atoi(tmp);
+	fscanf(p_file, "%s", t_tree->lmmbr);
+
+
 
 }
 

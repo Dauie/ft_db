@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/24 13:43:21 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/24 14:04:14 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct	s_dbnfo
 	bool		key_act;
 	bool		val_act;
 	bool		nval_act;
-	char		*tblnum;
 	t_mode		mode;
 }				t_dbnfo;
 
@@ -62,6 +61,7 @@ typedef struct	s_entrynode
 
 typedef struct s_dbnode
 {
+	size_t		tblamt;
 	char			tbl_name[MXNAMLEN];
 	time_t			tbl_ctime;
 	time_t			tbl_mtime;
