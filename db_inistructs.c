@@ -36,7 +36,7 @@ void	db_initdbnode(t_dbnode *elem)
 	elem->right = NULL;
 }
 
-void	db_initenode(t_entryn *entry)
+void	db_initenode(t_enode *entry)
 {
 	entry->left = NULL;
 	entry->right = NULL;

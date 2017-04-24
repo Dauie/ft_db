@@ -82,6 +82,28 @@ int		db_parseargs(t_dbnfo *db, int len)
 	return (db_verifyinput(db));
 }
 
+void		db_modemaster(t_dbnode *tree, t_dbnfo db)
+{
+	if (!db)
+		return ;
+	if (db.mode == NRML)
+		return ;
+	else if (db.mode == ADD_TBL)
+		ls_addtnodet(tree, tree->tbl_name);
+	else if (db.mode == ADD_NTRY)
+		ls_addtnoden(tree, tree->entries->ename);
+	else if (db.mode == EDIT_RNTRY)
+		ls_editenoder();
+	else if (db.mode == EDIT_APNTRY)
+		ls_editenodea();
+	else if (db.mode == EDIT_TBL)
+		ls_edittnodet();
+	else if (db.mode == DEL_NTRY)
+		ls_clearetree(tree);
+	else if (db.mode == DEL_TBL)
+		ls_cleartree(tree);
+}
+
 int			main(int ac, char **av)
 {
 	t_dbnfo		db;
@@ -103,7 +125,10 @@ int			main(int ac, char **av)
 			while (db.val[++i])
 				printf("val: %s\n", db.val[i]);
 		}
-		/*}
+		if (!(tree = db_loaddatabase(db)))
+			return (-1);
+		db_modemaster(tree, db);
+		/*
 		*  2.If there is DB already. Load it.
 		*   3. Carry out operation given by user.
 		*/

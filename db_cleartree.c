@@ -26,3 +26,19 @@ void ls_cleartree(t_dbnode **tree)
 	free(tmp);
 	tree = NULL;
 }
+
+void ls_clearetree(t_dbnode **tree)
+{
+	t_dbnode		*tmp;
+
+	tmp = *tree->entries;
+	if (!tree)
+		return ;
+	if (tmp->left)
+		ls_clearetree(&tmp->left);
+	if (tmp->right)
+		ls_clearetree(&tmp->right);
+	free(tmp);
+	tree = NULL;
+}
+
