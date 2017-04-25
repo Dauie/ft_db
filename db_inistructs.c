@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 20:54:58 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/24 16:59:52 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 10:07:23 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	db_initdbnfo(t_dbnfo *db)
 	db->tbl_name = NULL;
 	db->key_nam = NULL;
 	db->val = NULL;
-	db->nval = NULL;
+	db->nval = 0;
 	db->tbln_act = false;
 	db->key_act = false;
 	db->val_act = false;
@@ -32,7 +32,6 @@ void	db_initdbnode(t_dbnode *elem)
 	elem->tbl_ctime = 0;
 	elem->tbl_mtime = 0;
 	elem->left = NULL;
-	elem->entries = NULL;
 	elem->right = NULL;
 }
 

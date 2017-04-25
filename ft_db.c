@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/24 17:18:16 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 11:15:20 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int		db_parseargs(t_dbnfo *db, int len)
 		}
 		else if (db->val_act == true && db->mode > 0)
 		{
+			db->nval = len - i;
 			if (!(db->val = db_tbldup(&db->args[i], len - i)))
 				return (-1);
 			db->val_act = false;
@@ -87,7 +88,7 @@ int		db_modemaster(t_dbnode **t_tree, t_dbnfo *db)
 	if (!db)
 		return (-1);
 	if (db->mode == NRML)
-		return (-1);
+		return (0);
 	else if (db->mode == ADD_TBL)
 		db_addtnodet(t_tree, db);
 	/*else if (db->mode == ADD_NTRY)
@@ -110,7 +111,7 @@ int		db_modemaster(t_dbnode **t_tree, t_dbnfo *db)
 int			main(int ac, char **av)
 {
 	t_dbnfo		db;
-	t_dbnode	**tree;
+	t_dbnode	*tree;
 	
 	tree = NULL;
 	if (ac > 1)
@@ -118,19 +119,10 @@ int			main(int ac, char **av)
 		db_initdbnfo(&db);
 		db.args = db_tbldup(&av[1], ac - 1);
 		db_parseargs(&db, ac - 1);
-		if (db.tbl_name)
-			printf("tbln: %s\n",db.tbl_name);
-		if (db.key_nam)
-			printf("keynam: %s\n",db.key_nam);
-		if (db.val)
-		{
-			int i = -1;
-			while (db.val[++i])
-				printf("val: %s\n", db.val[i]);
-		}
-		if (!(*tree = db_loaddatabase(&db)))
+		if (!(tree = db_loaddatabase(&db)))
 			return (-1);
-		db_modemaster(tree, &db);
+		db_printttreeval(tree);
+		db_modemaster(&tree, &db);
 		/*
 		*  2.If there is DB already. Load it.
 		*   3. Carry out operation given by user.

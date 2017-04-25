@@ -5,6 +5,7 @@ void			db_populatedb(t_dbnode *t_tree,/* t_dbnfo *db,*/ FILE *p_file)
 	char	tmp[MXNAMLEN];
 
 	/*1st Line # of members*/
+	
 	fscanf(p_file, "%s", tmp);
 	t_tree->tblamt = atoi(tmp);
 	fscanf(p_file, "%s", tmp);
@@ -12,7 +13,15 @@ void			db_populatedb(t_dbnode *t_tree,/* t_dbnfo *db,*/ FILE *p_file)
 	fscanf(p_file, "%s", tmp);
 	t_tree->tbl_mtime = atoi(tmp);
 	fscanf(p_file, "%s", t_tree->lmmbr);
-	/*while (tmp);*/
+	/*int i = -1;
+	
+	while(fscanf() )
+	{	
+		
+		fscanf(p_file, "%s", t_tree->args[++i])
+			;
+	}
+	while (tmp);*/
 }
 
 t_dbnode		*db_loaddatabase(t_dbnfo *db)
@@ -20,13 +29,15 @@ t_dbnode		*db_loaddatabase(t_dbnfo *db)
 	t_dbnode	*t_tree;
 	FILE		*p_file;
 
-	if (!(t_tree = (t_dbnode *)malloc(sizeof(t_dbnode))))
-		return (NULL);
+	t_tree = NULL;
 	if (!(p_file = fopen( "rtt.db", "r")))
-		return (NULL);
-	if (!(t_tree->entries = db_memalloc(sizeof(t_enode))))
+	{
+		if (!(p_file = fopen("rtt.db", "ab")))
 			return (NULL);
-	db_initenode(t_tree->entries);
+		fwrite("0\n0\n0\nNA", 8, 1, p_file);
+		fclose(p_file);
+		p_file = NULL;
+	}
 	if (p_file)
 	{
 		db_populatedb(t_tree,/* db,*/ p_file);
@@ -34,14 +45,6 @@ t_dbnode		*db_loaddatabase(t_dbnfo *db)
 		return (t_tree);
 	}
 	else
-	{
-		strcpy(t_tree->tbl_name, db->tbl_name);
-		time(&t_tree->tbl_ctime);
-		time(&t_tree->tbl_mtime);
-		strcpy(t_tree->entries->ename, db->key_nam);
-		time(&t_tree->entries->emodtime);
-		time(&t_tree->entries->ecretime);
-		t_tree->entries->cmembr = db->val;
-	}
+		db_addtnoden(&t_tree, db);
 	return(t_tree);
 }

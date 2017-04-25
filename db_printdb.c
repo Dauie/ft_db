@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:40:14 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/24 17:29:10 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 11:17:21 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	db_printentrymeta(t_enode *entry)
 /*Prints the entry's values*/
 void	db_printentry(t_enode *entry)
 {
-	printf("%s", entry->ename);
+	printf("%s\n", entry->ename);
 	int i = -1;
 	while (entry->cmembr[++i])
-		printf("%s", entry->cmembr[i]);
+		printf("%s\n", entry->cmembr[i]);
 }
 

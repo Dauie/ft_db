@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:08:20 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/24 17:24:41 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 11:12:11 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@ void 	db_printttree(t_dbnode *t_tree)
 	if (t_tree->left)
 		db_printttree(t_tree->left);
 	printf("%s\n", t_tree->tbl_name);
+	if (t_tree->right)
+		db_printttree(t_tree->right);
+}
+
+void 	db_printttreeval(t_dbnode *t_tree)
+{
+	if (!t_tree)
+		return ;
+	if (t_tree->left)
+		db_printttree(t_tree->left);
+	printf("%s\n", t_tree->tbl_name);
+	db_printentry(t_tree->entries);
 	if (t_tree->right)
 		db_printttree(t_tree->right);
 }

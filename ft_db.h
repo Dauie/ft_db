@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/24 17:30:35 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 11:15:47 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct	s_dbnfo
 	char		*tbl_name;
 	char		*key_nam;
 	char		**val;
-	char		**nval;
+	size_t		nval;
 	bool		tbln_act;
 	bool		key_act;
 	bool		val_act;
@@ -95,6 +95,7 @@ void		db_printtbl(char *tbl_name, t_enode **e_tree);
 void		db_printentrymeta(t_enode *entry);
 void		db_printentry(t_enode *entry);
 void		db_printttree(t_dbnode *t_tree);
+void		db_printttreeval(t_dbnode *t_tree);
 void		db_revprintttree(t_dbnode *t_tree);
 void		db_printetree(t_enode *e_tree);
 void		db_revprintetree(t_enode *e_tree);
