@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:00:51 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 10:56:57 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 14:22:41 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static t_dbnode *prep_addtnode(t_dbnfo *db)
 		return (NULL);
 	db_initdbnode(elem);
 	strcpy(elem->tbl_name, db->tbl_name);
-	time(&elem->tbl_ctime);
-	time(&elem->tbl_mtime);
 	if (!(elem->entries = (t_enode *)db_memalloc(sizeof(t_enode))))
 		return (NULL);
 	strcpy(elem->entries->ename, db->key_nam);
@@ -64,31 +62,3 @@ void 		db_addtnoden(t_dbnode **t_tree, t_dbnfo *db)
 		db->mode = NRML;
 }
 
-void 		db_addtnodet(t_dbnode **tree, t_dbnfo *db)
-{
-	t_tridbnode		tri;
-
-	tri.ttmp = *tree;
-	tri.elem = prep_addtnode(db);
-	if (tri.ttmp)
-	{
-		while (tri.ttmp)
-		{
-			tri.ntmp = tri.ttmp;
-			if (tri.ttmp && tri.elem->tbl_ctime < tri.ttmp->tbl_ctime)
-			{
-				tri.ttmp = tri.ttmp->left;
-				if (!tri.ttmp)
-					tri.ntmp->left = tri.elem;
-			}
-			else
-			{
-				tri.ttmp = tri.ttmp->right;
-				if (!tri.ttmp)
-					tri.ntmp->right = tri.elem;
-			}
-		}
-	}
-	else
-		*tree = tri.elem;
-}

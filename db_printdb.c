@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:40:14 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 11:17:21 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 14:23:13 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	db_printdb(t_dbnode **t_tree)
 void	db_printtblmeta(t_dbnode *t_tree)
 {
 	printf("Table: %s", t_tree->tbl_name);
-	printf("Modified: %s", ctime(&t_tree->tbl_mtime));
-	printf("Created: %s", ctime(&t_tree->tbl_ctime));
 	printf("Last entry modified: %s", t_tree->lmmbr);
 }
 /*Prints the table's entry names*/

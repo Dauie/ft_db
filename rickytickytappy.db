@@ -1,11 +1,11 @@
 //'*' will symbolize meta data, the absence a table/file_name pair.//
 				/*Main Data Base File Prototype*/
 		 -----------------------
-		|*db_name				|
+		|						|
 		|*number_of_members		|
 		|*db_creation_time		|
 		|*db_time_last_modified	|
-		|*last_modified_table	|
+		|						|
 		|table_name -> file_name|
 		|table_name -> file_name|
 		|table_name -> file_name|
