@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:07:26 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/19 20:57:47 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/24 16:58:49 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void ls_clearetree(t_dbnode **tree)
 {
 	t_dbnode		*tmp;
 
-	tmp = *tree->entries;
+	tmp = *tree;
 	if (!tree)
 		return ;
 	if (tmp->left)

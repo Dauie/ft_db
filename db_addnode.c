@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:00:51 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 18:41:25 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/24 16:56:33 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 #include "ft_db.h"
 
-static t_dbnode *prep_addnode (char *name)
+static t_dbnode *prep_addtnode(t_dbnfo *db)
 {
 	t_dbnode *elem;
 
 	if (!(elem = (t_dbnode *)malloc(sizeof(t_dbnode))))
 		return (NULL);
 	db_initdbnode(elem);
-	strcpy(name, elem->tbl_name);
+	strcpy(db->tbl_name, elem->tbl_name);
 	return (elem);
 }
 
-void 		ls_addtnoden(t_dbnode **tree, char *name)
+void 		db_addtnoden(t_dbnode **t_tree, t_dbnfo *db)
 {
 	t_tridbnode		tri;
 
-	tri.ttmp = *tree;
-	tri.elem = prep_addnode(name);
+	tri.ttmp = *t_tree;
+	tri.elem = prep_addtnode(db);
 	if (tri.ttmp)
 	{
 		while (tri.ttmp)
 		{
 			tri.ntmp = tri.ttmp;
-			if (tri.ttmp && strcmp(name, tri.ttmp->tbl_name) < 0)
+			if (tri.ttmp && strcmp(tri.elem->tbl_name, tri.ttmp->tbl_name) < 0)
 			{
 				tri.ttmp = tri.ttmp->left;
 				if (!tri.ttmp)
@@ -51,15 +51,15 @@ void 		ls_addtnoden(t_dbnode **tree, char *name)
 		}
 	}
 	else
-		*tree = tri.elem;
+		*t_tree = tri.elem;
 }
 
-void 		ls_addtnodet(t_dbnode **tree, char *name)
+void 		db_addtnodet(t_dbnode **tree, t_dbnfo *db)
 {
 	t_tridbnode		tri;
 
 	tri.ttmp = *tree;
-	tri.elem = prep_addnode(name);
+	tri.elem = prep_addtnode(db);
 	if (tri.ttmp)
 	{
 		while (tri.ttmp)

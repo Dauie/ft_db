@@ -6,22 +6,22 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:40:14 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/24 13:19:30 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/24 17:29:10 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
 /*Prints the meta data for the database*/
-void	db_printdbmeta(t_dbnode **tree)
+void	db_printdbmeta(t_dbnode *t_tree)
 {
-;
+	printf("%s", t_tree->tbl_name);
 }
 
 /*Prints each table name*/
 void	db_printdb(t_dbnode **t_tree)
 {
-	db_printttree(t_tree);
+	db_printttree(*t_tree);
 }
 /*prints a tables metadata*/
 void	db_printtblmeta(t_dbnode *t_tree)

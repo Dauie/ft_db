@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 20:54:58 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 18:38:07 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/24 16:59:52 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	db_initdbnfo(t_dbnfo *db)
 {
 	db->args = NULL;
 	db->agtime = 0;
-	db->tbl_nam = NULL;
+	db->tbl_name = NULL;
 	db->key_nam = NULL;
 	db->val = NULL;
 	db->nval = NULL;
