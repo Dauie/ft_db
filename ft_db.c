@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 19:22:17 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 19:26:36 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,6 @@ int			main(int ac, char **av)
 		db_parseargs(&db, ac - 1);
 		if (!(tree = db_loaddatabase(&db)))
 			return (-1);
-		db_printttreeval(tree);
 		db_modemaster(&tree, &db);
 		/*
 		*  2.If there is DB already. Load it.

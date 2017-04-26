@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 19:14:20 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 19:28:48 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,25 @@ typedef struct			s_dbnfo
 	t_mode				mode;
 }						t_dbnfo;
 
-typedef struct			s_entrynode
+typedef struct			s_enode
 {
 	char				ename[MXNAMLEN];
 	time_t				emodtime;
 	time_t				ecretime;
 	char				**cmembr;
 	intmax_t			**nmembr;
-	struct s_entrynode	*left;
-	struct s_entrynode	*right;
+	struct s_enode		*left;
+	struct s_enode*		right;
 }						t_enode;
 
-typedef struct			s_dbnode
+typedef struct			s_tnode
 {
 	size_t				tblamt;
 	char				tbl_name[MXNAMLEN];
 	t_enode				*entries;
 	char				lmmbr[MXNAMLEN];
-	struct s_dbnode		*left;
-	struct s_dbnode		*right;
+	struct s_tnode		*left;
+	struct s_tnode		*right;
 }						t_tnode;
 
 typedef struct			s_tridbnode
@@ -103,8 +103,8 @@ void					db_clearetree(t_tnode **tree);
 void					db_initdbnfo(t_dbnfo *db);
 void					db_initdbnode(t_tnode *elem);
 void					db_initenode(t_enode *entry);
-int						db_populatedb(t_tnode *t_tree, t_dbnfo *db, FILE *p_file);
-t_tnode				*db_loaddatabase(t_dbnfo *db);
+int						db_populatedb(t_tnode *t_tree, FILE *p_file);
+t_tnode					*db_loaddatabase(t_dbnfo *db);
 void					*db_memalloc(size_t size);
 void					db_printdbmeta(t_tnode *t_tree);
 void					db_printdb(t_tnode **t_tree);
