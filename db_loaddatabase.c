@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 20:07:04 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 20:08:54 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 20:35:58 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,24 @@ int			db_fillnode(t_tnode *t_tree, FILE *p_file)
 	db_initdbnfo(&file);
 	if (!(fscanf(p_file, "%s", tmp)))
 		return (-1);
-	if (!(file.args = db_strsplit(tmp, '\n')))
+	file.nval = atoi(tmp);
+	bzero(tmp, 2048);
+	if (!(fscanf(p_file, "%s", tmp)))
 		return (-1);
-	if (isdigit(file.args[0][0]))
-		file.nval = atoi(file.args[0]);
-	if (isalpha(file.args[1][0]))
-		strcpy(file.tbl_name, file.args[1]);
-	if (isdigit(file.args[2][0]))
-		file.ctime = atoi(file.args[2]);
-	if (isdigit(file.args[3][0]))
-		time(&file.agtime);
-	int i = 3;
-	while (file.args[++i])
+	file.ctime = atoi(tmp);
+	bzero(tmp, 2048);
+	if (!(fscanf(p_file, "%s", tmp)))
+		return (-1);
+	file.agtime = atoi(tmp);
+	bzero(tmp, 2048);
+	int i = file.nval;
+	while (i-- > 0)
 	{
-		value = db_strsplit(file.args[i], ',');
-		strcpy(file.key_name, value[0]);
+		fscanf(p_file, "%s`", tmp);
+		value = (char **)db_strsplit(tmp, ',');
 		file.val = (char **)db_tbldup(&value[1], db_tbllen(&value[1]));
+		/*db_tbldel(value)*/
+		bzero(tmp, 2048);
 		db_addenoden(&t_tree->entries, &file);
 	}
 	return (0);
@@ -83,8 +85,10 @@ int				db_populatedb(t_tnode *t_tree, FILE *p_file)
 {
 	t_dbnfo		sort;
 	char		tmp[2048];		/*Need to define a max file size*/
-	
-	fscanf(p_file, "%s", tmp);
+	while (i > 0)
+	{
+		;
+	}
 	sort.args = db_strsplit(tmp, '\n');
 	db_parsedbfile(t_tree, &sort);
 	db_filltree(t_tree, &sort);
