@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 19:05:25 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 19:22:17 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ int		db_parseargs(t_dbnfo *db, int len)
 	int i = 0;
 	time(&db->agtime);
 	if (!(i = db_parseflag(db)))
+	{
 		printf("ft_db: illegal option -- %s\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n", db->args[i]);
+		return (-1);
+	}
 	while (i < len)
 	{ 
 		if (db->tbln_act == true && db->mode > 0)
