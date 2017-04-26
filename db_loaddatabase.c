@@ -6,7 +6,8 @@ int			db_fillnode(t_dbnode *t_tree, t_dbnfo *db, FILE *p_file)
 	char		tmp[2048];
 	char		**value;
 
-	fscanf(p_file, "%s", tmp);
+	if (!(fscanf(p_file, "%s", tmp)))
+		return (-1);
 	if (!(file.args = db_strsplit(tmp, '\n')))
 		return (-1);
 	if (isdigit(file.args[0][0]))
@@ -23,8 +24,8 @@ int			db_fillnode(t_dbnode *t_tree, t_dbnfo *db, FILE *p_file)
 		value = db_strsplit(file.args[i], ',');
 		strcpy(file.key_name, value[0]);
 		file.val = db_tbldup(&value[1], db_tbllen(&value[1]));
+		db_addenoden(&t_tree->entries, &file);
 	}
-
 	return (0);
 }
 /*Filling the tree by going through db->args (table file list)
@@ -56,7 +57,7 @@ int			db_parsedbfile(t_dbnode *t_tree, t_dbnfo *db)
 		t_tree->tblamt = atoi(db->args[0]);
 	tmp = db->args;
 	/*change 1 dependant on how many if's above for metadata*/
-	if (!(db->args = db_tbldup(&db->args[1], t_tree->tblamt)))
+	if (!(db->args = db_tbldup(&db->args[3], t_tree->tblamt)))
 		return (-1);
 	db_tbldel(tmp);
 	return (0);
