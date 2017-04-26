@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/04 11:42:58 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/26 14:21:35 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/26 14:23:28 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char		**db_tbladdl(char **tbl, char *line, size_t nmembrs)
 {
-	int		i;
+	size_t		i;
 	char	**res;
 	char	**tmp;
 

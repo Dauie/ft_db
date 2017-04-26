@@ -6,40 +6,43 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 20:07:04 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/26 14:13:35 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/26 14:59:57 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-int			db_fillnode(t_tnode *t_tree, FILE *p_file)
+int			db_fillnode(t_tnode *t_tree, FILE *p_tf)
 {
 	t_dbnfo		file;
 	char		tmp[256];
 	char		**value;
 	
+	bzero(tmp, 256);
 	db_initdbnfo(&file);
-	if (!(fscanf(p_file, "%s", tmp)))
+	if (!(fscanf(p_tf, "%s", tmp)))
+		return (-1);
+	strcpy(file.tbl_name, tmp);
+	if (!(fscanf(p_tf, "%s", tmp)))
 		return (-1);
 	file.nval = atoi(tmp);
 	bzero(tmp, 256);
-	if (!(fscanf(p_file, "%s", tmp)))
+	if (!(fscanf(p_tf, "%s", tmp)))
 		return (-1);
 	file.ctime = atoi(tmp);
 	bzero(tmp, 256);
-	if (!(fscanf(p_file, "%s", tmp)))
+	if (!(fscanf(p_tf, "%s", tmp)))
 		return (-1);
-	file.agtime = atoi(tmp);
+	time(&file.agtime);
 	bzero(tmp, 256);
-	int i = file.nval;
-	while (i-- > 0)
+	while (fscanf(p_tf, "%s", tmp) && *tmp != '\0')
 	{
-		fscanf(p_file, "%s`", tmp);
-		value = (char **)db_strsplit(tmp, ',');
-		file.val = (char **)db_tbldup(&value[1], db_tbllen(&value[1]));
-		/*db_tbldel(value)*/
-		bzero(tmp, 256);
+		file.nargs++;
+		value = db_strsplit(tmp, ',');
+		strcpy(file.key_name, value[0]);
+		file.val = db_tbldup(&value[1], db_tbllen(&value[1]));
 		db_addenoden(&t_tree->entries, &file);
+		bzero(tmp, 256);
 	}
 	return (0);
 }
@@ -74,7 +77,6 @@ int				db_populatedb(t_tnode *t_tree, FILE *p_dbf)
 	char		tmp[256];		/*Need to define a max file size*/
 
 	bzero(tmp, 256);
-	db_initdbnfo(&sort);
 	if (!(fscanf(p_dbf, "%s", tmp)))
 		return (-1);
 	xpctdn = atoi(tmp);
@@ -88,10 +90,10 @@ int				db_populatedb(t_tnode *t_tree, FILE *p_dbf)
 	sort.agtime = atoi(tmp);
 	bzero(tmp, 256);
 	sort.nargs = sort.nval;
-	while (fscanf(p_dbf, "%s", tmp))
+	while (fscanf(p_dbf, "%s", tmp) && *tmp != '\0')
 	{
 		sort.nargs++;
-		db_tbladdl(sort.args, tmp, sort.nargs);
+		sort.args = db_tbladdl(sort.args, tmp, sort.nargs);
 		bzero(tmp, 256);
 	}
 	db_filltree(t_tree, &sort);
