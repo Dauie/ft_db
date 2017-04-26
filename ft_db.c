@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 11:15:20 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 15:39:46 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,9 @@ static int	db_parseflag(t_dbnfo *db)
 
 static int		db_verifyinput(t_dbnfo *db)
 {
-	if (db->tbl_name && db->key_nam && db->val)
-		return (0);
-	else if (!db->tbl_name)
+	if (db->tbl_name[0] == '\0')
 		printf("ft_db: table name is required\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n");
-	else if (!db->key_nam)
+	else if (db->key_name[0] == '\0')
 		printf("ft_db: key name is required\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n");
 	else if (!db->val && db->mode != DEL_TBL)
 		printf("ft_db: value is required for key\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n");
@@ -58,15 +56,13 @@ int		db_parseargs(t_dbnfo *db, int len)
 	{ 
 		if (db->tbln_act == true && db->mode > 0)
 		{
-			if (!(db->tbl_name = strdup(db->args[i])))
-				return (-1);
+			strcpy(db->tbl_name, db->args[i]);
 			db->tbln_act = false;
 			db->key_act = true;
 		}
 		else if (db->key_act == true && db->mode > 0)
 		{
-			if (!(db->key_nam = strdup(db->args[i])))
-				return (-1);
+			strcpy(db->key_name, db->args[i]);
 			db->key_act = false;
 			db->val_act = true;
 		}

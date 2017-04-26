@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 14:29:00 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 15:53:01 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ typedef struct			s_dbnfo
 {
 	char				**args;
 	time_t				agtime;
-	char				*tbl_name;
-	char				*key_nam;
+	time_t				ctime;
+	char				tbl_name[MXNAMLEN];
+	char				key_name[MXNAMLEN];
 	char				**val;
 	size_t				nval;
 	bool				tbln_act;
@@ -84,7 +85,7 @@ void					db_clearetree(t_dbnode **tree);
 void					db_initdbnfo(t_dbnfo *db);
 void					db_initdbnode(t_dbnode *elem);
 void					db_initenode(t_enode *entry);
-void					db_populatedb(t_dbnode *t_tree, t_dbnfo *db, FILE *p_file);
+int						db_populatedb(t_dbnode *t_tree, t_dbnfo *db, FILE *p_file);
 t_dbnode				*db_loaddatabase(t_dbnfo *db);
 void					*db_memalloc(size_t size);
 void					db_printdbmeta(t_dbnode *t_tree);
@@ -102,4 +103,6 @@ char					**db_tbldup(char **tbl, int len);
 void					db_tbldel(char **tbl);
 int						db_search_tnam(t_dbnode *tree, char *name);
 char					**db_strsplit(char const *s, char c);
+size_t					db_tbllen(char **tbl);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:00:51 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 14:22:41 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 18:24:57 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_dbnode *prep_addtnode(t_dbnfo *db)
 	strcpy(elem->tbl_name, db->tbl_name);
 	if (!(elem->entries = (t_enode *)db_memalloc(sizeof(t_enode))))
 		return (NULL);
-	strcpy(elem->entries->ename, db->key_nam);
+	strcpy(elem->entries->ename, db->key_name);
 	time(&elem->entries->emodtime);
 	time(&elem->entries->ecretime);
 	elem->entries->cmembr = db_tbldup(db->val, db->nval);
