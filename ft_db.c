@@ -26,6 +26,26 @@ static int	db_parseflag(t_dbnfo *db)
 			db->mode = DEL_TBL;
 		else if (strcmp(db->args[0], "-de") == 0)
 			db->mode = DEL_NTRY;
+		else if (strcmp(db->args[0], "-pt") == 0)
+			db->mode = PRNT_TBL;
+		else if (strcmp(db->args[0], "-ptm") == 0)
+			db->mode = PRNT_TBLM;
+		else if (strcmp(db->args[0], "-pe") == 0)
+			db->mode = PRNT_NTRY;
+		else if (strcmp(db->args[0], "-pem") == 0)
+			db->mode = PRNT_NTRYM;
+		else if (strcmp(db->args[0], "-pd") == 0)
+			db->mode = PRNT_DB;
+		else if (strcmp(db->args[0], "-pdm") == 0)
+			db->mode = PRNT_DBM;
+		else if (strcmp(db->args[0], "-xt") == 0)
+			db->mode = XPRT_TBL;
+		else if (strcmp(db->args[0], "-xtm") == 0)
+			db->mode = XPRT_TBLM;
+		else if (strcmp(db->args[0], "-xe") == 0)
+			db->mode = XPRT_NTRY;
+		else if (strcmp(db->args[0], "-xem") == 0)
+			db->mode = XPRT_NTRYM;
 		if (db->mode > 0)
 		{	
 			db->tbln_act = true;

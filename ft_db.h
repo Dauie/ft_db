@@ -31,7 +31,18 @@ typedef	enum			s_mode
 	EDIT_APNTRY,
 	EDIT_TBL,
 	DEL_NTRY,
-	DEL_TBL
+	DEL_TBL,
+	PRNT_NTRY,
+	PRNT_TBL,
+	PRNT_DB,
+	PRNT_NTRYM,
+	PRNT_TBLM,
+	PRNT_DBM,
+	XPRT_NTRY,
+	XPRT_NTRYM,
+	XPRT_TBL,
+	XPRT_TBLM,
+
 }						t_mode;
 
 typedef struct			s_dbnfo
