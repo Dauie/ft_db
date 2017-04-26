@@ -14,18 +14,18 @@
 
 #include "ft_db.h"
 
-static t_dbnode *prep_addtnode(t_dbnfo *db)
+static t_tnode *prep_addtnode(t_dbnfo *db)
 {
-	t_dbnode *elem;
+	t_tnode *elem;
 
-	if (!(elem = (t_dbnode *)db_memalloc(sizeof(t_dbnode))))
+	if (!(elem = (t_tnode *)db_memalloc(sizeof(t_tnode))))
 		return (NULL);
 	db_initdbnode(elem);
 	strcpy(elem->tbl_name, db->tbl_name);
 	return (elem);
 }
 
-void 		db_addtnoden(t_dbnode **t_tree, t_dbnfo *db)
+void 		db_addtnoden(t_tnode **t_tree, t_dbnfo *db)
 {
 	t_tridbnode		tri;
 

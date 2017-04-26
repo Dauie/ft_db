@@ -12,7 +12,7 @@
 
 #include "ft_db.h"
 
-void 	db_printttree(t_dbnode *t_tree)
+void 	db_printttree(t_tnode *t_tree)
 {
 	if (!t_tree)
 		return ;
@@ -23,7 +23,7 @@ void 	db_printttree(t_dbnode *t_tree)
 		db_printttree(t_tree->right);
 }
 
-void 	db_printttreeval(t_dbnode *t_tree)
+void 	db_printttreeval(t_tnode *t_tree)
 {
 	if (!t_tree)
 		return ;
@@ -35,7 +35,7 @@ void 	db_printttreeval(t_dbnode *t_tree)
 		db_printttree(t_tree->right);
 }
 
-void 	db_revprintttree(t_dbnode *t_tree)
+void 	db_revprintttree(t_tnode *t_tree)
 {
 	if (!t_tree)
 		return ;

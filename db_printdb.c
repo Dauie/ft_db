@@ -13,18 +13,18 @@
 #include "ft_db.h"
 
 /*Prints the meta data for the database*/
-void	db_printdbmeta(t_dbnode *t_tree)
+void	db_printdbmeta(t_tnode *t_tree)
 {
 	printf("%s", t_tree->tbl_name);
 }
 
 /*Prints each table name*/
-void	db_printdb(t_dbnode **t_tree)
+void	db_printdb(t_tnode **t_tree)
 {
 	db_printttree(*t_tree);
 }
 /*prints a tables metadata*/
-void	db_printtblmeta(t_dbnode *t_tree)
+void	db_printtblmeta(t_tnode *t_tree)
 {
 	printf("Table: %s", t_tree->tbl_name);
 	printf("Last entry modified: %s", t_tree->lmmbr);

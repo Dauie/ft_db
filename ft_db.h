@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 18:47:21 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 19:14:20 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ typedef struct			s_dbnode
 	char				lmmbr[MXNAMLEN];
 	struct s_dbnode		*left;
 	struct s_dbnode		*right;
-}						t_dbnode;
+}						t_tnode;
 
 typedef struct			s_tridbnode
 {
-	t_dbnode			*elem;
-	t_dbnode			*ntmp;
-	t_dbnode			*ttmp;
+	t_tnode			*elem;
+	t_tnode			*ntmp;
+	t_tnode			*ttmp;
 }						t_tridbnode;
 
 typedef struct			s_trienode
@@ -96,30 +96,30 @@ typedef struct			s_trienode
 	t_enode			*ttmp;
 }						t_trienode;
 
-void					db_addtnoden(t_dbnode **t_tree, t_dbnfo *db);
+void					db_addtnoden(t_tnode **t_tree, t_dbnfo *db);
 void					db_addenoden(t_enode **t_tree, t_dbnfo *db);
-void					db_cleartree(t_dbnode **tree);
-void					db_clearetree(t_dbnode **tree);
+void					db_cleartree(t_tnode **tree);
+void					db_clearetree(t_tnode **tree);
 void					db_initdbnfo(t_dbnfo *db);
-void					db_initdbnode(t_dbnode *elem);
+void					db_initdbnode(t_tnode *elem);
 void					db_initenode(t_enode *entry);
-int						db_populatedb(t_dbnode *t_tree, t_dbnfo *db, FILE *p_file);
-t_dbnode				*db_loaddatabase(t_dbnfo *db);
+int						db_populatedb(t_tnode *t_tree, t_dbnfo *db, FILE *p_file);
+t_tnode				*db_loaddatabase(t_dbnfo *db);
 void					*db_memalloc(size_t size);
-void					db_printdbmeta(t_dbnode *t_tree);
-void					db_printdb(t_dbnode **t_tree);
-void					db_printtblmeta(t_dbnode *t_tree);
+void					db_printdbmeta(t_tnode *t_tree);
+void					db_printdb(t_tnode **t_tree);
+void					db_printtblmeta(t_tnode *t_tree);
 void					db_printtbl(char *tbl_name, t_enode **e_tree);
 void					db_printentrymeta(t_enode *entry);
 void					db_printentry(t_enode *entry);
-void					db_printttree(t_dbnode *t_tree);
-void					db_printttreeval(t_dbnode *t_tree);
-void					db_revprintttree(t_dbnode *t_tree);
+void					db_printttree(t_tnode *t_tree);
+void					db_printttreeval(t_tnode *t_tree);
+void					db_revprintttree(t_tnode *t_tree);
 void					db_printetree(t_enode *e_tree);
 void					db_revprintetree(t_enode *e_tree);
 char					**db_tbldup(char **tbl, int len);
 void					db_tbldel(char **tbl);
-int						db_search_tnam(t_dbnode *tree, char *name);
+int						db_search_tnam(t_tnode *tree, char *name);
 char					**db_strsplit(char const *s, char c);
 size_t					db_tbllen(char **tbl);
 

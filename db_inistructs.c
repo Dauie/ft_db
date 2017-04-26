@@ -27,7 +27,7 @@ void	db_initdbnfo(t_dbnfo *db)
 	db->mode = NRML;
 }
 
-void	db_initdbnode(t_dbnode *elem)
+void	db_initdbnode(t_tnode *elem)
 {
 	elem->left = NULL;
 	elem->right = NULL;

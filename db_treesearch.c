@@ -12,9 +12,9 @@
 
 #include "ft_db.h"
 
-int		db_search_tnam(t_dbnode *tree, char *name)
+int		db_search_tnam(t_tnode *tree, char *name)
 {
-	t_dbnode	*tmp;
+	t_tnode	*tmp;
 
 	tmp = tree;
 	while (tmp)

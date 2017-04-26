@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 15:39:46 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/25 19:05:25 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,14 +99,14 @@ int		db_parseargs(t_dbnfo *db, int len)
 	return (db_verifyinput(db));
 }
 
-int		db_modemaster(t_dbnode **t_tree, t_dbnfo *db)
+int		db_modemaster(t_tnode **t_tree, t_dbnfo *db)
 {
 	if (!db)
 		return (-1);
 	if (db->mode == NRML)
 		return (0);
 	else if (db->mode == ADD_TBL)
-		db_addtnodet(t_tree, db);
+		db_addtnoden(t_tree, db);
 	/*else if (db->mode == ADD_NTRY)
 		db_addentry(t_tree, db);*/
 /*	else if (db->mode == EDIT_RNTRY)
@@ -127,7 +127,7 @@ int		db_modemaster(t_dbnode **t_tree, t_dbnfo *db)
 int			main(int ac, char **av)
 {
 	t_dbnfo		db;
-	t_dbnode	*tree;
+	t_tnode	*tree;
 	
 	tree = NULL;
 	if (ac > 1)

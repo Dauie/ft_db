@@ -12,9 +12,9 @@
 
 #include "ft_db.h"
 
-void ls_cleartree(t_dbnode **tree)
+void ls_cleartree(t_tnode **tree)
 {
-	t_dbnode		*tmp;
+	t_tnode		*tmp;
 
 	tmp = *tree;
 	if (!tree)
@@ -27,9 +27,9 @@ void ls_cleartree(t_dbnode **tree)
 	tree = NULL;
 }
 
-void ls_clearetree(t_dbnode **tree)
+void ls_clearetree(t_tnode **tree)
 {
-	t_dbnode		*tmp;
+	t_tnode		*tmp;
 
 	tmp = *tree;
 	if (!tree)

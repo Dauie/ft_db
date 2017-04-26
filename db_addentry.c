@@ -5,7 +5,7 @@ static t_enode *prep_addenode(t_dbnfo *db)
 {
 	t_enode *elem;
 
-	if (!(elem = (t_enode *)db_memalloc(sizeof(t_dbnode))))
+	if (!(elem = (t_enode *)db_memalloc(sizeof(t_tnode))))
 		return (NULL);
 	db_initenode(elem);
 	strcpy(elem->ename, db->key_name);

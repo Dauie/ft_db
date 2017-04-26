@@ -1,6 +1,6 @@
 #include "ft_db.h"
 
-int			db_fillnode(t_dbnode *t_tree, t_dbnfo *db, FILE *p_file)
+int			db_fillnode(t_tnode *t_tree, FILE *p_file)
 {
 	t_dbnfo		file;
 	char		tmp[2048];
@@ -30,7 +30,7 @@ int			db_fillnode(t_dbnode *t_tree, t_dbnfo *db, FILE *p_file)
 }
 /*Filling the tree by going through db->args (table file list)
  * and filling a node with each table file. (.tbl) */
-int			db_filltree(t_dbnode *t_tree, t_dbnfo *db)
+int			db_filltree(t_tnode *t_tree, t_dbnfo *db)
 {
 	int i = -1;
 	FILE *p_file;
@@ -49,7 +49,7 @@ int			db_filltree(t_dbnode *t_tree, t_dbnfo *db)
 
 /*This function will fill in the t_tree with the metadata stored in db->args
  * then store the table file name list */
-int			db_parsedbfile(t_dbnode *t_tree, t_dbnfo *db)
+int			db_parsedbfile(t_tnode *t_tree, t_dbnfo *db)
 {
 	char **tmp;
 
@@ -66,16 +66,15 @@ int			db_parsedbfile(t_dbnode *t_tree, t_dbnfo *db)
  * it will be passed to "db_parsedbfile" after we will have the table file list.
  * With this list we will build the tree, filling in each node with the
  * information from a table file.*/
-int			db_populatedb(t_dbnode *t_tree, t_dbnfo *db, FILE *p_file)
+int			db_populatedb(t_tnode *t_tree, FILE *p_file)
 {
+	t_dbnfo sort;
 	char	tmp[2048];		/*Need to define a max file size*/
-
-	/*1st Line # of members*/
 	
 	fscanf(p_file, "%s", tmp);
-	db->args = db_strsplit(tmp, '\n');
-	db_parsedbfile(t_tree, db);
-	db_filltree(t_tree, db);
+	sort.args = db_strsplit(tmp, '\n');
+	db_parsedbfile(t_tree, &sort);
+	db_filltree(t_tree, &sort);
 	return (0);
 }
 
@@ -83,9 +82,9 @@ int			db_populatedb(t_dbnode *t_tree, t_dbnfo *db, FILE *p_file)
 /*Looks for a rtt.db file. If found it loads the file else it will create a
  * fresh copy of the rtt.db and fill it with initial information
  * Then it will populate the t_tree with the */
-t_dbnode		*db_loaddatabase(t_dbnfo *db)
+t_tnode		*db_loaddatabase()
 {
-	t_dbnode	*t_tree;
+	t_tnode	*t_tree;
 	FILE		*p_file;
 
 	t_tree = NULL;
@@ -99,11 +98,9 @@ t_dbnode		*db_loaddatabase(t_dbnfo *db)
 	}
 	if (p_file)
 	{
-		db_populatedb(t_tree, db, p_file);
+		db_populatedb(t_tree, p_file);
 		fclose(p_file);
 		return (t_tree);
 	}
-	else
-		db_addtnoden(&t_tree, db);
 	return(t_tree);
 }
