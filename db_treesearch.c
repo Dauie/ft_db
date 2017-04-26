@@ -28,3 +28,37 @@ int		db_search_tnam(t_tnode *tree, char *name)
 	}
 	return (0);
 }
+
+t_tnode		*db_searchtnode(t_node *t_tree, t_dbnfo *db)
+{
+	search through entire node set;
+	if specified node does not exist, create it;
+	add node potentially might need to return something;
+
+	t_tnode *tmp;
+
+	tmp = t_tree;
+	if (!name)
+		return (NULL);
+	if (name == tmp->tbl_name)
+		return (tmp->);
+	if (strcmp(name, tmp->tbl_name) > 0 && tmp->right != NULL)
+		return (db_searchtnode(tmp->right, name))
+	else if (tmp->left != NULL)
+		return (db_searchtnode(tmp->left, name))
+	else
+		db_addtnoden(t_tree)
+	return (0);
+	/*t_tridbnode		tri;
+
+	tri.ttmp = *t_tree;
+
+	if (tri.ttmp)
+	{
+		while (tri.tmp)
+		{
+			tri.ntmp = tri.ttmp;
+
+		}
+	}*/
+}
