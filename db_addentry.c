@@ -1,33 +1,35 @@
 
 #include "ft_db.h"
 
-static t_enode *prep_addenode(t_dbnfo *db)
+static t_enode *prep_addenode(t_dbnfo *info)
 {
 	t_enode *elem;
 
-	if (!(elem = (t_enode *)db_memalloc(sizeof(t_tnode))))
+	if (!(elem = (t_enode *)db_memalloc(sizeof(t_enode) + 1)))
 		return (NULL);
 	db_initenode(elem);
-	strcpy(elem->ename, db->key_name);
-	strcpy(elem->ename, db->key_name);
-	time(&elem->emodtime);
-	time(&elem->ecretime);
-	elem->cmembr = db_tbldup(db->val, db->nval);
+	strcpy(elem->ename, info->key_name);
+	strcpy(elem->ename, info->key_name);
+	time(&elem->emtime);
+	time(&elem->ectime);
+	if (!(elem->cmembr = db_tbldup(info->val, db_tbllen(info->val))))
+		return (NULL);
 	return (elem);
 }
 
-void 		db_addenoden(t_enode **t_tree, t_dbnfo *db)
+void				db_addenoden(t_enode **entries, t_dbnfo *info)
 {
 	t_trienode		tri;
 
-	tri.ttmp = *t_tree;
-	tri.elem = prep_addenode(db);
+	tri.ttmp = *entries;
+	if (!(tri.elem = prep_addenode(info)))
+		return ;
 	if (tri.ttmp)
 	{
 		while (tri.ttmp)
 		{
 			tri.ntmp = tri.ttmp;
-			if (tri.ttmp && strcmp(tri.elem->ename, tri.ttmp->ename) < 0)
+			if (strcmp(tri.elem->ename, tri.ttmp->ename) < 0)
 			{
 				tri.ttmp = tri.ttmp->left;
 				if (!tri.ttmp)
@@ -42,8 +44,6 @@ void 		db_addenoden(t_enode **t_tree, t_dbnfo *db)
 		}
 	}
 	else
-		*t_tree = tri.elem;
-	if (db->mode == ADD_TBL)
-		db->mode = NRML;
+		*entries = tri.elem;
 }
 

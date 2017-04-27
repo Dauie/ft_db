@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 19:26:36 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/27 10:57:51 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int		db_verifyinput(t_dbnfo *db)
 int		db_parseargs(t_dbnfo *db, int len)
 {
 	int i = 0;
-	time(&db->agtime);
+	time(&db->mtime);
 	if (!(i = db_parseflag(db)))
 	{
 		printf("ft_db: illegal option -- %s\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n", db->args[i]);
@@ -109,7 +109,7 @@ int		db_modemaster(t_tnode **t_tree, t_dbnfo *db)
 	if (db->mode == NRML)
 		return (0);
 	else if (db->mode == ADD_TBL)
-		db_addtnoden(t_tree, db);
+		db_addorcreate(t_tree, db);
 	/*else if (db->mode == ADD_NTRY)
 		db_addentry(t_tree, db);*/
 /*	else if (db->mode == EDIT_RNTRY)
@@ -130,17 +130,19 @@ int		db_modemaster(t_tnode **t_tree, t_dbnfo *db)
 int			main(int ac, char **av)
 {
 	t_dbnfo		db;
-	t_tnode	*tree;
+	t_tnode		*t_tree;
 	
-	tree = NULL;
+	t_tree = NULL;
 	if (ac > 1)
 	{
 		db_initdbnfo(&db);
 		db.args = db_tbldup(&av[1], ac - 1);
 		db_parseargs(&db, ac - 1);
-		if (!(tree = db_loaddatabase(&db)))
+		db_loaddatabase(&t_tree);
+		if (t_tree == NULL)
 			return (-1);
-		db_modemaster(&tree, &db);
+		db_modemaster(&t_tree, &db);
+		db_printdb(&t_tree);
 		/*
 		*  2.If there is DB already. Load it.
 		*   3. Carry out operation given by user.

@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/26 17:30:09 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/27 14:23:03 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <time.h>
 #include <ctype.h>
 
-#define MXNAMLEN 128
+#define MXNAMLEN 24
 
 typedef	enum			s_mode
 {
@@ -47,9 +47,10 @@ typedef	enum			s_mode
 
 typedef struct			s_dbnfo
 {
-	size_t				nargs;
+
 	char				**args;
-	time_t				agtime;
+	size_t				nargs;
+	time_t				mtime;
 	time_t				ctime;
 	char				tbl_name[MXNAMLEN];
 	char				key_name[MXNAMLEN];
@@ -65,8 +66,8 @@ typedef struct			s_dbnfo
 typedef struct			s_enode
 {
 	char				ename[MXNAMLEN];
-	time_t				emodtime;
-	time_t				ecretime;
+	time_t				emtime;
+	time_t				ectime;
 	char				**cmembr;
 	intmax_t			**nmembr;
 	struct s_enode		*left;
@@ -77,8 +78,8 @@ typedef struct			s_tnode
 {
 	size_t				tblamt;
 	char				tbl_name[MXNAMLEN];
-	t_enode				*entries;
 	char				lmmbr[MXNAMLEN];
+	t_enode				*entries;
 	struct s_tnode		*left;
 	struct s_tnode		*right;
 }						t_tnode;
@@ -102,10 +103,10 @@ void					db_addenoden(t_enode **t_tree, t_dbnfo *db);
 void					db_cleartree(t_tnode **tree);
 void					db_clearetree(t_tnode **tree);
 void					db_initdbnfo(t_dbnfo *db);
-void					db_initdbnode(t_tnode *elem);
+void					db_inittnode(t_tnode *elem);
 void					db_initenode(t_enode *entry);
-int						db_populatedb(t_tnode *t_tree, FILE *p_file);
-t_tnode					*db_loaddatabase(t_dbnfo *db);
+int						db_populatedb(t_tnode **t_tree, FILE *p_dbf);
+void					db_loaddatabase(t_tnode **t_tree);
 void					*db_memalloc(size_t size);
 void					db_printdbmeta(t_tnode *t_tree);
 void					db_printdb(t_tnode **t_tree);
@@ -125,4 +126,5 @@ char					**db_strsplit(char const *s, char c);
 size_t					db_tbllen(char **tbl);
 t_tnode					*db_searchtnode(t_tnode *t_tree, t_dbnfo *info);
 int						db_search_tnam(t_tnode *tree, char *name);
+void					db_addorcreate(t_tnode **t_tree, t_dbnfo *file);
 #endif

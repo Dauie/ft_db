@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:40:14 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 14:23:13 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/26 18:22:35 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	db_printentrymeta(t_enode *entry)
 {
 
 	printf("Entry Name: %s", entry->ename);
-	printf("Last Modified: %s\n", ctime(&entry->emodtime));
-	printf("Created: %s\n", ctime(&entry->ecretime));
+	printf("Last Modified: %s\n", ctime(&entry->emtime));
+	printf("Created: %s\n", ctime(&entry->ectime));
 }
 /*Prints the entry's values*/
 void	db_printentry(t_enode *entry)

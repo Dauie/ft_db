@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 20:54:58 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/26 14:01:38 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/26 18:17:32 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	db_initdbnfo(t_dbnfo *db)
 {
 	db->args = NULL;
 	db->nargs = 0;
+	db->mtime = 0;
+	db->ctime = 0;
 	bzero(db->tbl_name, MXNAMLEN);
 	bzero(db->key_name, MXNAMLEN);
-	db->agtime = 0;
 	db->val = NULL;
 	db->nval = 0;
 	db->tbln_act = false;
@@ -28,17 +29,23 @@ void	db_initdbnfo(t_dbnfo *db)
 	db->mode = NRML;
 }
 
-void	db_initdbnode(t_tnode *elem)
+void	db_inittnode(t_tnode *elem)
 {
+	elem->tblamt = 0;
+	bzero(elem->tbl_name, MXNAMLEN);
+	bzero(elem->lmmbr, MXNAMLEN);
+	elem->entries = NULL;
 	elem->left = NULL;
 	elem->right = NULL;
 }
 
 void	db_initenode(t_enode *entry)
 {
+	bzero(entry->ename, MXNAMLEN);
+	entry->emtime = 0;
+	entry->ectime = 0;
+	entry->cmembr = NULL;
+	entry->nmembr = NULL;
 	entry->left = NULL;
 	entry->right = NULL;
-	entry->emodtime = 0;
-	entry->cmembr = NULL;
-	entry->nmembr = 0;
 }

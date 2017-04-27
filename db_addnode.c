@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:00:51 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 18:50:20 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/27 12:21:36 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static t_tnode *prep_addtnode(t_dbnfo *db)
 {
 	t_tnode *elem;
 
-	if (!(elem = (t_tnode *)db_memalloc(sizeof(t_tnode))))
+	if (!(elem = (t_tnode *)db_memalloc(sizeof(t_tnode) + 1)))
 		return (NULL);
-	db_initdbnode(elem);
+	db_inittnode(elem);
 	strcpy(elem->tbl_name, db->tbl_name);
 	return (elem);
 }
@@ -30,13 +30,14 @@ void 		db_addtnoden(t_tnode **t_tree, t_dbnfo *db)
 	t_tridbnode		tri;
 
 	tri.ttmp = *t_tree;
-	tri.elem = prep_addtnode(db);
+	if (!(tri.elem = prep_addtnode(db)))
+		return ;
 	if (tri.ttmp)
 	{
 		while (tri.ttmp)
 		{
 			tri.ntmp = tri.ttmp;
-			if (tri.ttmp && strcmp(tri.elem->tbl_name, tri.ttmp->tbl_name) < 0)
+			if (strcmp(tri.elem->tbl_name, tri.ttmp->tbl_name) < 0)
 			{
 				tri.ttmp = tri.ttmp->left;
 				if (!tri.ttmp)
@@ -52,7 +53,5 @@ void 		db_addtnoden(t_tnode **t_tree, t_dbnfo *db)
 	}
 	else
 		*t_tree = tri.elem;
-	if (db->mode == ADD_TBL)
-		db->mode = NRML;
 }
 

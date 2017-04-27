@@ -5,6 +5,7 @@ void	*db_memalloc(size_t size)
 	void	*memory;
 
 	if (!(memory = (void *)malloc(size)))
-	memset(memory, 0, size);
+		return (NULL);
+	memset(memory,0, size);
 	return (memory);
 }
