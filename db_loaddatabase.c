@@ -6,11 +6,25 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 20:07:04 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/26 14:59:57 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/26 17:33:42 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
+
+void		db_addorcreate(t_tnode *t_tree, t_dbnfo *file)
+{
+	t_tnode *table;
+
+	if ((table = db_searchtnode(t_tree, file)))
+		db_addenoden(&table->entries, file);
+	else
+	{
+		db_addtnoden(&t_tree, file);
+		table = db_searchtnode(t_tree, file);
+		db_addenoden(&table->entries, file);
+	}
+}
 
 int			db_fillnode(t_tnode *t_tree, FILE *p_tf)
 {
@@ -41,7 +55,7 @@ int			db_fillnode(t_tnode *t_tree, FILE *p_tf)
 		value = db_strsplit(tmp, ',');
 		strcpy(file.key_name, value[0]);
 		file.val = db_tbldup(&value[1], db_tbllen(&value[1]));
-		db_addenoden(&t_tree->entries, &file);
+		db_addorcreate(t_tree, &file);
 		bzero(tmp, 256);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/26 14:21:32 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/26 17:30:09 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ void					db_revprintetree(t_enode *e_tree);
 char					**db_tbldup(char **tbl, int len);
 void					db_tbldel(char **tbl);
 char					**db_tbladdl(char **tbl, char *line, size_t nmembrs);
-int						db_search_tnam(t_tnode *tree, char *name);
 char					**db_strsplit(char const *s, char c);
 size_t					db_tbllen(char **tbl);
-
+t_tnode					*db_searchtnode(t_tnode *t_tree, t_dbnfo *info);
+int						db_search_tnam(t_tnode *tree, char *name);
 #endif
