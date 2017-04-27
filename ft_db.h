@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/27 14:23:03 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/27 15:52:29 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@
 typedef	enum			s_mode
 {
 	NRML,
-	ADD_TBL,
 	ADD_NTRY,
-	EDIT_RNTRY,
-	EDIT_APNTRY,
-	EDIT_TBL,
+	EDIT_NTRY,
 	DEL_NTRY,
 	DEL_TBL,
 	PRNT_NTRY,
@@ -37,9 +34,7 @@ typedef	enum			s_mode
 	PRNT_DB,
 	PRNT_NTRYM,
 	PRNT_TBLM,
-	PRNT_DBM,
 	XPRT_NTRY,
-	XPRT_NTRYM,
 	XPRT_TBL,
 	XPRT_TBLM,
 
@@ -108,8 +103,9 @@ void					db_initenode(t_enode *entry);
 int						db_populatedb(t_tnode **t_tree, FILE *p_dbf);
 void					db_loaddatabase(t_tnode **t_tree);
 void					*db_memalloc(size_t size);
+void					db_printhelp(void);
 void					db_printdbmeta(t_tnode *t_tree);
-void					db_printdb(t_tnode **t_tree);
+void					db_printdb(t_tnode *t_tree);
 void					db_printtblmeta(t_tnode *t_tree);
 void					db_printtbl(char *tbl_name, t_enode **e_tree);
 void					db_printentrymeta(t_enode *entry);

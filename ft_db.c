@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/27 10:57:51 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/27 15:52:55 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 static int	db_parseflag(t_dbnfo *db)
 {
-		if (strcmp(db->args[0], "-at") == 0)
-			db->mode = ADD_TBL;
-		else if (strcmp(db->args[0], "-ae") == 0)
+
+		if (strcmp(db->args[0], "-ae") == 0)
 			db->mode = ADD_NTRY;
-		else if (strcmp(db->args[0], "-et") == 0)
-			db->mode = EDIT_TBL;
 		else if (strcmp(db->args[0], "-ee") == 0)
-			db->mode = EDIT_RNTRY;
+			db->mode = EDIT_NTRY;
 		else if (strcmp(db->args[0], "-dt") == 0)
 			db->mode = DEL_TBL;
 		else if (strcmp(db->args[0], "-de") == 0)
@@ -32,20 +29,12 @@ static int	db_parseflag(t_dbnfo *db)
 			db->mode = PRNT_TBLM;
 		else if (strcmp(db->args[0], "-pe") == 0)
 			db->mode = PRNT_NTRY;
-		else if (strcmp(db->args[0], "-pem") == 0)
-			db->mode = PRNT_NTRYM;
 		else if (strcmp(db->args[0], "-pd") == 0)
 			db->mode = PRNT_DB;
-		else if (strcmp(db->args[0], "-pdm") == 0)
-			db->mode = PRNT_DBM;
 		else if (strcmp(db->args[0], "-xt") == 0)
 			db->mode = XPRT_TBL;
-		else if (strcmp(db->args[0], "-xtm") == 0)
-			db->mode = XPRT_TBLM;
 		else if (strcmp(db->args[0], "-xe") == 0)
 			db->mode = XPRT_NTRY;
-		else if (strcmp(db->args[0], "-xem") == 0)
-			db->mode = XPRT_NTRYM;
 		if (db->mode > 0)
 		{	
 			db->tbln_act = true;
@@ -58,11 +47,11 @@ static int	db_parseflag(t_dbnfo *db)
 static int		db_verifyinput(t_dbnfo *db)
 {
 	if (db->tbl_name[0] == '\0')
-		printf("ft_db: table name is required\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n");
+		printf("ft_db: table name is required\nusage: ft_db [-ae -ee -dt -de ...] [table] [key] [value] [new value]\n --help for more\n");
 	else if (db->key_name[0] == '\0')
-		printf("ft_db: key name is required\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n");
+		printf("ft_db: key name is required\nusage: ft_db [-ae -ee -dt -de ...] [table] [key] [value] [new value]\n --help for more\n");
 	else if (!db->val && db->mode != DEL_TBL)
-		printf("ft_db: value is required for key\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n");
+		printf("ft_db: value is required for key\nusage: ft_db [-ae -ee -dt -de ...] [table] [key] [value] [new value]\n --help for more\n");
 	return(-1);
 }
 
@@ -70,9 +59,14 @@ int		db_parseargs(t_dbnfo *db, int len)
 {
 	int i = 0;
 	time(&db->mtime);
+	if (strcmp(db->args[0], "--help") == 0)
+	{
+		db_printhelp();
+		return (0);
+	}
 	if (!(i = db_parseflag(db)))
 	{
-		printf("ft_db: illegal option -- %s\nusage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n", db->args[i]);
+		printf("ft_db: illegal option -- %s\nusage: ft_db [-ae -et -ee -dt -de] [table] [key] [value] [new value]\n", db->args[i]);
 		return (-1);
 	}
 	while (i < len)
@@ -108,7 +102,7 @@ int		db_modemaster(t_tnode **t_tree, t_dbnfo *db)
 		return (-1);
 	if (db->mode == NRML)
 		return (0);
-	else if (db->mode == ADD_TBL)
+	else if (db->mode == ADD_NTRY)
 		db_addorcreate(t_tree, db);
 	/*else if (db->mode == ADD_NTRY)
 		db_addentry(t_tree, db);*/
@@ -136,13 +130,15 @@ int			main(int ac, char **av)
 	if (ac > 1)
 	{
 		db_initdbnfo(&db);
-		db.args = db_tbldup(&av[1], ac - 1);
-		db_parseargs(&db, ac - 1);
+		if (!(db.args = db_tbldup(&av[1], ac - 1)))
+			return (-1);
+		if (!(db_parseargs(&db, ac - 1)))
+			return (-1);
 		db_loaddatabase(&t_tree);
 		if (t_tree == NULL)
 			return (-1);
 		db_modemaster(&t_tree, &db);
-		db_printdb(&t_tree);
+		db_printdb(t_tree);
 		/*
 		*  2.If there is DB already. Load it.
 		*   3. Carry out operation given by user.
@@ -150,6 +146,6 @@ int			main(int ac, char **av)
 		return (1);
 	}
 	else
-		printf("usage: ft_db [-at -ae -et -ee -dt -de] [table] [key] [value] [new value]\n");
+		printf("usage: ft_db [-ae -ee -dt -de ...] [table] [key] [value] [new value]\n");
 	return (0);
 }
