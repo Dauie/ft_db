@@ -14,8 +14,8 @@
 
 void	db_printhelp(void)
 {
-	printf("ALL COMMANDS ARE ENTERED: ./ft_db -mode [table] [key] [value / new value ...]\u0950\n");
-	printf("-_-_-_-_ \033[01;31mLegend\033[0m _-_-_-_-_-\n");
+	printf("all examples: ./ft_db -mode [table] [key] [value / new value ...]\n");
+	printf("-_-_-_- \033[01;31m\u0950  Legend \u0950\033[0m  -_-_-_\n");
 	printf("|  \033[01;31m-ae\033[0m : add entry        |\n");
 	printf("|  \033[01;31m-ee\033[0m : edit entry       |\n");
 	printf("|  \033[01;31m-dt\033[0m : delete table     |\n");
