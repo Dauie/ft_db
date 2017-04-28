@@ -123,4 +123,5 @@ size_t					db_tbllen(char **tbl);
 t_tnode					*db_searchtnode(t_tnode *t_tree, t_dbnfo *info);
 int						db_search_tnam(t_tnode *tree, char *name);
 void					db_addorcreate(t_tnode **t_tree, t_dbnfo *file);
+void					db_saveentry(t_enode *entry, FILE *f_save);
 #endif
