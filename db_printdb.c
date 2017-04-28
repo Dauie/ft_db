@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:40:14 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/27 16:36:22 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/27 19:41:58 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@ void	db_printhelp(void)
 	printf("-xe :	export entry\n");
 }
 
-/*Prints the meta data for the database*/
-void	db_printdbmeta(t_tnode *t_tree)
-{
-	printf("%s", t_tree->tbl_name);
-}
-
-/*Prints each table name*/
 void	db_printdb(t_tnode *t_tree)
 {
 	if (!t_tree)
@@ -46,20 +39,43 @@ void	db_printdb(t_tnode *t_tree)
 	if (t_tree->right)
 		db_printdb(t_tree->right);
 }
-/*prints a tables metadata*/
-void	db_printtblmeta(t_tnode *t_tree)
+
+void db_printtable(t_tnode *t_tree, t_dbnfo *info)
 {
-	printf("Table: %s", t_tree->tbl_name);
-	printf("Last entry modified: %s", t_tree->lmmbr);
+	t_tnode *node;
+
+	node = NULL;
+	if (!(node = db_searchtnode(t_tree, info)))
+	{
+		printf("ft_db: ERROR. Table not found.");
+		return ;
+	}
+	printf("Table: %s\n", t_tree->tbl_name);
+	db_printetree(t_tree->entries);
+}
+
+void	db_printtblmeta(t_tnode *t_tree, t_dbnfo *info)
+{
+		t_tnode *node;
+
+	node = NULL;
+	if (!(node = db_searchtnode(t_tree, info)))
+	{
+		printf("ft_db: ERROR. Table not found.");
+		return ;
+	}
+	printf("Table: %s\n", t_tree->tbl_name);
+
+	printf("table: %s", t_tree->tbl_name);
+	printf("last entry modified: %s", t_tree->lmmbr);
 }
 /*Prints the table's entry names*/
 
-/*prints a entry's metadata*/
 void	db_printentrymeta(t_enode *entry)
 {
 
-	printf("Entry Name: %s", entry->ename);
-	printf("Last Modified: %s\n", ctime(&entry->emtime));
+	printf("entry Name: %s", entry->ename);
+	printf("last Modified: %s\n", ctime(&entry->emtime));
 	printf("Created: %s\n", ctime(&entry->ectime));
 }
 /*Prints the entry's values*/
