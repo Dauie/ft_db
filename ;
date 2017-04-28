@@ -6,21 +6,22 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:40:14 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/28 14:42:31 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/28 14:16:28 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-
+static char * = " \u06de"
+#define ENTEYM \u06dd
 
 /* \u06de RUB EL HIZB: grouping (table)*/
 /* \0700 END OF PARA (entry separator)*/
 
 void	db_printhelp(void)
 {
-	printf("%s : table symbol ", G_TSYM);
-	printf("%s : entry symbol ", G_ESYM);
+	printf("%s : table symbol ", TBLSYM);
+printf("%s : table symbol ", TBLSYM)
 	printf("ALL COMMANDS ARE ENTERED: ./ft_db -mode [table] [key] [value / new value ...]\n");
 	printf("-_-_-_-_ Legend -_-_-_-_\n\n");
 	printf("-ae :	add entry\n");
@@ -41,7 +42,7 @@ void	db_printdb(t_tnode *t_tree)
 		return ;
 	if (t_tree->left)
 		db_printdb(t_tree->left);
-	printf("%s: %s\n", G_TSYM, t_tree->tbl_name);
+	printf("\u06de: %s\n", t_tree->tbl_name);
 	db_printetree(t_tree->entries);
 	if (t_tree->right)
 		db_printdb(t_tree->right);
@@ -57,7 +58,7 @@ void db_printtable(t_tnode *t_tree, t_dbnfo *info)
 		printf("ft_db: ERROR. Table not found.");
 		return ;
 	}
-	printf("%s: %s\n", G_TSYM, t_tree->tbl_name);
+	printf("Table: %s\n", t_tree->tbl_name);
 	db_printetree(t_tree->entries);
 }
 
@@ -79,7 +80,7 @@ void	db_printtblmeta(t_tnode *t_tree, t_dbnfo *info)
 
 void	db_printentrymeta(t_enode *entry)
 {
-	printf("%s: %s", G_ESYM, entry->ename);
+	printf("entry Name: %s", entry->ename);
 	printf("created: %s\n", ctime(&entry->ctime));
 	printf("modified: %s\n", ctime(&entry->mtime));
 
@@ -97,10 +98,10 @@ void	db_printentry(t_tnode *t_tree, t_dbnfo *info)
 		return ;
 	}
 	if (!(entry = db_searchenode(table->entries, info)))
-	printf("%s: %s\n", G_ESYM, entry->ename);
+	printf("\u06dd: %s\n", entry->ename);
 	int i = -1;
 	while (entry->cmembr[++i])
-		printf("%s %s", entry->cmembr[i], G_EDIV);
+		printf("%s \u0700", entry->cmembr[i]);
 	printf("\n");
 }
 

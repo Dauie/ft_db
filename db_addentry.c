@@ -10,8 +10,8 @@ static t_enode *prep_addenode(t_dbnfo *info)
 	db_initenode(elem);
 	strcpy(elem->ename, info->key_name);
 	strcpy(elem->ename, info->key_name);
-	time(&elem->emtime);
-	time(&elem->ectime);
+	time(&elem->mtime);
+	time(&elem->ctime);
 	if (!(elem->cmembr = db_tbldup(info->val, db_tbllen(info->val))))
 		return (NULL);
 	return (elem);

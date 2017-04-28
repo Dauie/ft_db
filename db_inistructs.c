@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 20:54:58 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/27 20:03:34 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/28 13:41:53 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	db_inittnode(t_tnode *elem)
 	elem->ctime = 0;
 	elem->mtime = 0;
 	bzero(elem->tbl_name, MXNAMLEN);
-	bzero(elem->lmmbr, MXNAMLEN);
 	elem->entries = NULL;
 	elem->left = NULL;
 	elem->right = NULL;

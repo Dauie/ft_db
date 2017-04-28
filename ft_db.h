@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/27 21:00:47 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/28 14:49:00 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 #include <time.h>
 #include <ctype.h>
 
+static char G_TSYM[] = "\u0950";
+static char G_ESYM[] = "\u06de";
+static char G_EDIV[] = "\u0700";
 #define MXNAMLEN 24
 
 typedef	enum			s_mode

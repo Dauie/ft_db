@@ -1,5 +1,5 @@
 #include "ft_db.h"
-
+/*
 void	db_savettree(t_tnode *t_tree)
 {
 	if (!t_tree)
@@ -84,3 +84,4 @@ void	db_revsaveetree(t_enode *e_tree)
 	db_revsaveetree(e_tree->right);
 	db_revsaveetree(e_tree->left);
 }
+*/

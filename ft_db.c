@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/27 21:01:39 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/28 13:44:10 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ int			main(int ac, char **av)
 		if (t_tree == NULL)
 			return (-1);
 		db_modemaster(&t_tree, &db);
-		db_printdb(t_tree);
 		/*
 		*  2.If there is DB already. Load it.
 		*   3. Carry out operation given by user.
