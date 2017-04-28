@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 20:54:58 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/26 18:17:32 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/27 20:03:34 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	db_initdbnfo(t_dbnfo *db)
 void	db_inittnode(t_tnode *elem)
 {
 	elem->tblamt = 0;
+	elem->ctime = 0;
+	elem->mtime = 0;
 	bzero(elem->tbl_name, MXNAMLEN);
 	bzero(elem->lmmbr, MXNAMLEN);
 	elem->entries = NULL;
@@ -42,10 +44,9 @@ void	db_inittnode(t_tnode *elem)
 void	db_initenode(t_enode *entry)
 {
 	bzero(entry->ename, MXNAMLEN);
-	entry->emtime = 0;
-	entry->ectime = 0;
+	entry->ctime = 0;
+	entry->mtime = 0;
 	entry->cmembr = NULL;
-	entry->nmembr = NULL;
 	entry->left = NULL;
 	entry->right = NULL;
 }

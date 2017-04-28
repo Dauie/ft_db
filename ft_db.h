@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/27 15:52:29 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/27 21:00:47 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct			s_dbnfo
 	size_t				nargs;
 	time_t				mtime;
 	time_t				ctime;
+	time_t				atime;
 	char				tbl_name[MXNAMLEN];
 	char				key_name[MXNAMLEN];
 	char				**val;
@@ -61,8 +62,8 @@ typedef struct			s_dbnfo
 typedef struct			s_enode
 {
 	char				ename[MXNAMLEN];
-	time_t				emtime;
-	time_t				ectime;
+	time_t				ctime;
+	time_t				mtime;
 	char				**cmembr;
 	intmax_t			**nmembr;
 	struct s_enode		*left;
@@ -71,9 +72,10 @@ typedef struct			s_enode
 
 typedef struct			s_tnode
 {
-	size_t				tblamt;
 	char				tbl_name[MXNAMLEN];
-	char				lmmbr[MXNAMLEN];
+	size_t				tblamt;
+	time_t				ctime;
+	time_t				mtime;
 	t_enode				*entries;
 	struct s_tnode		*left;
 	struct s_tnode		*right;
@@ -106,10 +108,10 @@ void					*db_memalloc(size_t size);
 void					db_printhelp(void);
 void					db_printdbmeta(t_tnode *t_tree);
 void					db_printdb(t_tnode *t_tree);
-void					db_printtblmeta(t_tnode *t_tree);
-void					db_printtbl(char *tbl_name, t_enode **e_tree);
+void					db_printtable(t_tnode *t_tree, t_dbnfo *info);
+void					db_printtblmeta(t_tnode *t_tree, t_dbnfo *info);
 void					db_printentrymeta(t_enode *entry);
-void					db_printentry(t_enode *entry);
+void					db_printentry(t_tnode *t_tree, t_dbnfo *info);
 void					db_printttree(t_tnode *t_tree);
 void					db_printttreeval(t_tnode *t_tree);
 void					db_revprintttree(t_tnode *t_tree);
@@ -120,8 +122,7 @@ void					db_tbldel(char **tbl);
 char					**db_tbladdl(char **tbl, char *line, size_t nmembrs);
 char					**db_strsplit(char const *s, char c);
 size_t					db_tbllen(char **tbl);
+t_enode					*db_searchenode(t_enode *e_tree, t_dbnfo *info);
 t_tnode					*db_searchtnode(t_tnode *t_tree, t_dbnfo *info);
-int						db_search_tnam(t_tnode *tree, char *name);
 void					db_addorcreate(t_tnode **t_tree, t_dbnfo *file);
-void					db_saveentry(t_enode *entry, FILE *f_save);
 #endif

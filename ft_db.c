@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/27 15:52:55 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/27 21:01:39 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,18 +104,16 @@ int		db_modemaster(t_tnode **t_tree, t_dbnfo *db)
 		return (0);
 	else if (db->mode == ADD_NTRY)
 		db_addorcreate(t_tree, db);
-	/*else if (db->mode == ADD_NTRY)
-		db_addentry(t_tree, db);*/
-/*	else if (db->mode == EDIT_RNTRY)
+/*	else if (db->mode == EDIT_NTRY)
 		db_editenoder();
-	else if (db->mode == EDIT_APNTRY)
-		db_editenode();
 	else if (db->mode == DEL_NTRY)
 		db_clearetree(tree);
 	else if (db->mode == DEL_TBL)
 		ls_cleartree(tree);*/
-	/*else if (db->mode == EDIT_TBL)
-		db_edittnodet();*/
+	else if (db->mode == PRNT_DB)
+		db_printdb(*t_tree);
+	else if (db->mode == PRNT_TBL)
+		db_printtable(*t_tree, db);
 	else
 		return(-1);
 	return (0);
