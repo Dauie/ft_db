@@ -27,7 +27,7 @@ void	db_savettreeval(t_tnode *t_tree)
 		if (!(f_save = fopen("tinyrick.txt.", "w")))
 			return ;
 		fprintf(f_save, "%s\n", t_tree->tbl_name);
-		db_saveentry(t_tree->entries, *f_save);
+		db_saveentry(t_tree->entries, f_save);
 		fclose(f_save);
 	}
 	db_savettreeval(t_tree->left);
