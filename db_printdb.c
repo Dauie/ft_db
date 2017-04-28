@@ -14,18 +14,19 @@
 
 void	db_printhelp(void)
 {
-	printf("ALL COMMANDS ARE ENTERED: ./ft_db -mode [table] [key] [value / new value ...]\n");
-	printf("-_-_-_-_ Legend -_-_-_-_\n\n");
-	printf("-ae :	add entry\n");
-	printf("-ee :	edit entry\n");
-	printf("-dt :	delete table\n");
-	printf("-de :	delete entry\n");
-	printf("-pd :	print entire DB\n");
-	printf("-pt :	print table\n");
-	printf("-ptm:	print table info\n");
-	printf("-pe :	print entry\n");
-	printf("-xt :	export table\n");
-	printf("-xe :	export entry\n");
+	printf("ALL COMMANDS ARE ENTERED: ./ft_db -mode [table] [key] [value / new value ...]\u0950\n");
+	printf("-_-_-_-_ \033[01;31mLegend\033[0m _-_-_-_-_-\n");
+	printf("|  \033[01;31m-ae\033[0m : add entry        |\n");
+	printf("|  \033[01;31m-ee\033[0m : edit entry       |\n");
+	printf("|  \033[01;31m-dt\033[0m : delete table     |\n");
+	printf("|  \033[01;31m-de\033[0m : delete entry     |\n");
+	printf("|  \033[01;31m-pd\033[0m : print entire DB  |\n");
+	printf("|  \033[01;31m-pt\033[0m : print table      |\n");
+	printf("|  \033[01;31m-ptm\033[0m: print table info |\n");
+	printf("|  \033[01;31m-pe\033[0m : print entry      |\n");
+	printf("|  \033[01;31m-xt\033[0m : export table     |\n");
+	printf("|  \033[01;31m-xe\033[0m : export entry     |\n");
+	printf("-_-_-_-_-_-_-_-_-_-_-_-_-_\n");
 }
 
 void	db_printdb(t_tnode *t_tree)
@@ -56,7 +57,7 @@ void db_printtable(t_tnode *t_tree, t_dbnfo *info)
 
 void	db_printtblmeta(t_tnode *t_tree, t_dbnfo *info)
 {
-		t_tnode *node;
+	t_tnode *node;
 
 	node = NULL;
 	if (!(node = db_searchtnode(t_tree, info)))
