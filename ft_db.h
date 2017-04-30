@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/29 17:40:25 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/30 12:22:30 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,18 @@ static char G_EDIV[] = "\u0700";
 typedef	enum			s_mode
 {
 	NRML,
+	PRNT_DB,
+	DEL_TBL,
+	XPRT_TBLM,
+	PRNT_TBL,
+	PRNT_TBLM,
+	XPRT_TBL,
 	ADD_NTRY,
 	EDIT_NTRY,
 	DEL_NTRY,
-	DEL_TBL,
 	PRNT_NTRY,
-	PRNT_TBL,
-	PRNT_DB,
 	PRNT_NTRYM,
-	PRNT_TBLM,
-	XPRT_NTRY,
-	XPRT_TBL,
-	XPRT_TBLM,
-
+	XPRT_NTRY
 }						t_mode;
 
 typedef struct			s_dbnfo

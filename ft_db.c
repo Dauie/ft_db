@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/29 13:44:50 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/30 12:47:23 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ static int	db_parseflag(t_dbnfo *db)
 
 static int		db_verifyinput(t_dbnfo *db)
 {
-	if (db->tbl_name[0] == '\0')
+	if (db->tbl_name[0] == '\0' && db->mode > 1)
 		printf("ft_db: table name is required\nusage: ft_db [-ae -ee -dt -de ...] [table] [key] [value] [new value]\n --help for more\n");
-	else if (db->key_name[0] == '\0')
+	else if (db->key_name[0] == '\0' && db->mode > 6)
 		printf("ft_db: key name is required\nusage: ft_db [-ae -ee -dt -de ...] [table] [key] [value] [new value]\n --help for more\n");
-	else if (!db->val && db->mode != DEL_TBL)
+	else if (!db->val && db->mode != DEL_TBL && db->mode > 6)
 		printf("ft_db: value is required for key\nusage: ft_db [-ae -ee -dt -de ...] [table] [key] [value] [new value]\n --help for more\n");
 	return(-1);
 }

@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 14:23:10 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/29 19:13:04 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/30 14:05:16 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,13 @@ int			db_numtofile(intmax_t num, FILE *p_dbf)
 
 void		db_entriestofile(t_enode *e_tree, FILE *p_tf)
 {
-	size_t i = -1;
+	size_t i;
 
+	i = -1;
+	if (!e_tree)
+		return ;
+	if (e_tree->left)
+		db_entriestofile(e_tree->left, p_tf);
 	fputs(e_tree->ename, p_tf);
 	fputs(",",p_tf);
 	while (e_tree->cmembr[++i])
@@ -34,7 +39,9 @@ void		db_entriestofile(t_enode *e_tree, FILE *p_tf)
 		fputs(e_tree->cmembr[i], p_tf);
 		fputs(",", p_tf);
 	}
-	fputs("\n|\n", p_tf);
+	fputs("\n", p_tf);
+	if (e_tree->right)
+		db_entriestofile(e_tree->right, p_tf);
 }
 
 void		db_saveentrylist(t_tnode *t_tree)
@@ -42,7 +49,6 @@ void		db_saveentrylist(t_tnode *t_tree)
 	char	*filename;
 	size_t	len;
 	FILE	*p_tf;
-
 
 	if (!(filename = db_strjoin(t_tree->tbl_name, ".tbl")))
 		return ;
@@ -60,6 +66,7 @@ void		db_saveentrylist(t_tnode *t_tree)
 	db_numtofile(t_tree->ctime, p_tf);
 	db_numtofile(t_tree->mtime, p_tf);
 	db_entriestofile(t_tree->entries, p_tf);
+	fputs("|\n", p_tf);
 	fclose(p_tf);
 }
 
