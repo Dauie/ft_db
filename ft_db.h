@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/28 14:49:00 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/29 17:40:25 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,18 +86,19 @@ typedef struct			s_tnode
 
 typedef struct			s_tridbnode
 {
-	t_tnode			*elem;
-	t_tnode			*ntmp;
-	t_tnode			*ttmp;
+	t_tnode				*elem;
+	t_tnode				*ntmp;
+	t_tnode				*ttmp;
 }						t_tridbnode;
 
 typedef struct			s_trienode
 {
-	t_enode			*elem;
-	t_enode			*ntmp;
-	t_enode			*ttmp;
+	t_enode				*elem;
+	t_enode				*ntmp;
+	t_enode				*ttmp;
 }						t_trienode;
 
+char					*db_itoa(intmax_t nbg);
 void					db_addtnoden(t_tnode **t_tree, t_dbnfo *db);
 void					db_addenoden(t_enode **t_tree, t_dbnfo *db);
 void					db_cleartree(t_tnode **tree);
@@ -107,6 +108,7 @@ void					db_inittnode(t_tnode *elem);
 void					db_initenode(t_enode *entry);
 int						db_populatedb(t_tnode **t_tree, FILE *p_dbf);
 void					db_loaddatabase(t_tnode **t_tree);
+int						db_savedb(t_tnode **t_tree, t_dbnfo *info);
 void					*db_memalloc(size_t size);
 void					db_printhelp(void);
 void					db_printdbmeta(t_tnode *t_tree);
@@ -124,7 +126,10 @@ char					**db_tbldup(char **tbl, int len);
 void					db_tbldel(char **tbl);
 char					**db_tbladdl(char **tbl, char *line, size_t nmembrs);
 char					**db_strsplit(char const *s, char c);
+char					*db_strjoin(char const *s1, char const *s2);
 size_t					db_tbllen(char **tbl);
+void					db_ttreelen(t_tnode *t_tree, size_t  *len);
+void					db_etreelen(t_enode *e_tree, size_t  *len);
 t_enode					*db_searchenode(t_enode *e_tree, t_dbnfo *info);
 t_tnode					*db_searchtnode(t_tnode *t_tree, t_dbnfo *info);
 void					db_addorcreate(t_tnode **t_tree, t_dbnfo *file);

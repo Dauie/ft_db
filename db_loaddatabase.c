@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 20:07:04 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/27 14:26:27 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/29 17:55:46 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,16 @@ int			db_filltree(t_tnode **t_tree, t_dbnfo *sort)
 {
 	int i = -1;
 	FILE *p_file;
+	char *dir;
+	char *tmp;
+
+	dir = NULL;
+	tmp = NULL;
 	while (sort->args[++i])
 	{
-		if (!(p_file = fopen(sort->args[i], "r")))
+		if (!(dir = db_strjoin("tbls/",sort->args[i])))
+			return (-1);
+		if (!(p_file = fopen(dir, "r")))
 		{
 			printf("FT_DB ERROR: %s is missing!", sort->args[i]);
 			return (-1);

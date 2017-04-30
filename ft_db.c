@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/28 13:44:10 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/29 13:44:50 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,16 +104,16 @@ int		db_modemaster(t_tnode **t_tree, t_dbnfo *db)
 		return (0);
 	else if (db->mode == ADD_NTRY)
 		db_addorcreate(t_tree, db);
+	else if (db->mode == PRNT_DB)
+		db_printdb(*t_tree);
+	else if (db->mode == PRNT_TBL)
+		db_printtable(*t_tree, db);
 /*	else if (db->mode == EDIT_NTRY)
 		db_editenoder();
 	else if (db->mode == DEL_NTRY)
 		db_clearetree(tree);
 	else if (db->mode == DEL_TBL)
 		ls_cleartree(tree);*/
-	else if (db->mode == PRNT_DB)
-		db_printdb(*t_tree);
-	else if (db->mode == PRNT_TBL)
-		db_printtable(*t_tree, db);
 	else
 		return(-1);
 	return (0);
@@ -136,6 +136,7 @@ int			main(int ac, char **av)
 		if (t_tree == NULL)
 			return (-1);
 		db_modemaster(&t_tree, &db);
+		db_savedb(&t_tree, &db);
 		/*
 		*  2.If there is DB already. Load it.
 		*   3. Carry out operation given by user.
