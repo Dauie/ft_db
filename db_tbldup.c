@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 15:26:49 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/22 16:28:35 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/01 12:55:41 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char		**db_tbldup(char **tbl, int len)
 	char	**tmp;
 
 	i = -1;
-	if (!(res = (char **)malloc(sizeof(char *) * (len + 1))))
+	if (!(res = (char **)db_memalloc(sizeof(char *) * (len + 1))))
 		return (NULL);
 	bzero((void*)res, sizeof(char *) * (len + 1));
 	tmp = res;
@@ -28,6 +28,31 @@ char		**db_tbldup(char **tbl, int len)
 		*tmp = strdup(*tbl);
 		tbl++;
 		tmp++;
+	}
+	return (res);
+}
+
+char		**db_tblrmline(char **tbl, char *rm, int len)
+{
+	int		i;
+	char	**res;
+	char	**tmp;
+
+	i = -1;
+	if (!(res = (char **)db_memalloc(sizeof(char *) * (len + 1))))
+		return (NULL);
+	bzero((void*)res, sizeof(char *) * (len + 1));
+	tmp = res;
+	while (++i < len)
+	{
+		if (strcmp(*tmp, rm) != 0)
+		{
+			*tmp = strdup(*tbl);
+			tbl++;
+			tmp++;
+		}
+		else
+			tbl++;
 	}
 	return (res);
 }

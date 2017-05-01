@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:08:42 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/27 20:23:17 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/04/30 16:36:37 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ t_tnode		*db_searchtnode(t_tnode *t_tree, t_dbnfo *info)
 	{
 		if (strcmp(info->tbl_name, tmp->tbl_name) == 0)
 			return (tmp);
-		if (strcmp(info->tbl_name, tmp->tbl_name) > 0)
-				tmp = tmp->right;
+		if (strcmp(info->tbl_name, tmp->tbl_name) < 0)
+				tmp = tmp->left;
 		else
-			tmp = tmp->left;
+			tmp = tmp->right;
 	}
 	return (NULL);
 }
@@ -38,10 +38,10 @@ t_enode		*db_searchenode(t_enode *e_tree, t_dbnfo *info)
 	{
 		if (strcmp(info->tbl_name, tmp->ename) == 0)
 			return (tmp);
-		if (strcmp(info->key_name, tmp->ename) > 0)
-				tmp = tmp->right;
+		if (strcmp(info->key_name, tmp->ename) < 0)
+				tmp = tmp->left;
 		else
-			tmp = tmp->left;
+			tmp = tmp->right;
 	}
 	return (NULL);
 }

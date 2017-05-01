@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/30 12:47:23 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/01 14:39:59 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static int	db_parseflag(t_dbnfo *db)
 
 		if (strcmp(db->args[0], "-ae") == 0)
 			db->mode = ADD_NTRY;
-		else if (strcmp(db->args[0], "-ee") == 0)
-			db->mode = EDIT_NTRY;
 		else if (strcmp(db->args[0], "-dt") == 0)
 			db->mode = DEL_TBL;
 		else if (strcmp(db->args[0], "-de") == 0)
 			db->mode = DEL_NTRY;
+		else if (strcmp(db->args[0], "-dv") == 0)
+			db->mode = DEL_VAL;
 		else if (strcmp(db->args[0], "-pt") == 0)
 			db->mode = PRNT_TBL;
 		else if (strcmp(db->args[0], "-ptm") == 0)
@@ -108,6 +108,12 @@ int		db_modemaster(t_tnode **t_tree, t_dbnfo *db)
 		db_printdb(*t_tree);
 	else if (db->mode == PRNT_TBL)
 		db_printtable(*t_tree, db);
+	else if (db->mode == PRNT_TBLM)
+		db_printtblmeta(*t_tree, db);
+	else if (db->mode == PRNT_NTRY)
+		db_printentry(*t_tree, db);
+	else if (db->mode == DEL_VAL)
+		db_delvalue(*t_tree, db);
 /*	else if (db->mode == EDIT_NTRY)
 		db_editenoder();
 	else if (db->mode == DEL_NTRY)
