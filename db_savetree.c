@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 14:23:10 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/01 17:58:58 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/01 18:20:20 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void		db_entriestofile(t_enode *e_tree, FILE *p_tf)
 	if (e_tree->left)
 		db_entriestofile(e_tree->left, p_tf);
 	fputs(e_tree->ename, p_tf);
-	fputs(",",p_tf);
+	fputs("|",p_tf);
 	while (e_tree->cmembr[++i])
 	{
 		fputs(e_tree->cmembr[i], p_tf);
-		fputs(",", p_tf);
+		fputs("|", p_tf);
 	}
 	fputs("\n", p_tf);
 	if (e_tree->right)

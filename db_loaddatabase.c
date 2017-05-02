@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 20:07:04 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/01 18:14:17 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/01 18:21:08 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int			db_fillnode(t_tnode **t_tree, FILE *p_tf)
 		if (tmp[0] == '|')
 			break ;
 		file.nargs++;
-		value = db_strsplit(tmp, ',');
+		value = db_strsplit(tmp, '|');
 		strcpy(file.key_name, value[0]);
 		if (!(file.val = db_tbldup(&value[1], db_tbllen(&value[1]))))
 			return (-1);

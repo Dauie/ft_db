@@ -6,9 +6,17 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/01 17:44:31 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/01 18:29:22 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+/*1. fix timestamps thruout
+ *2. fix add entry to appent entries if already a member
+ *3. make a delete entry
+ *4. make more robust printing options
+ * */
+
 
 #include "ft_db.h"
 
