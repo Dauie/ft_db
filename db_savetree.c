@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 14:23:10 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/30 14:05:16 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/01 17:58:58 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int			db_savedb(t_tnode **t_tree, t_dbnfo *info)
 	db_numtofile(info->ctime, p_dbf);
 	db_numtofile(info->mtime, p_dbf);
 	db_savetbllist(*t_tree, p_dbf);
+
 	fclose(p_dbf);
 	return (0);
 }

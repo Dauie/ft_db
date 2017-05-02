@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/01 14:39:59 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/01 17:44:31 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,8 @@ int			main(int ac, char **av)
 			return (-1);
 		db_modemaster(&t_tree, &db);
 		db_savedb(&t_tree, &db);
+		if (db.mode == DEL_TBL)
+			db_deltbl(&db);
 		/*
 		*  2.If there is DB already. Load it.
 		*   3. Carry out operation given by user.

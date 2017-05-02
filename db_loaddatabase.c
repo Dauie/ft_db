@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 20:07:04 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/29 17:55:46 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/01 18:14:17 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int			db_fillnode(t_tnode **t_tree, FILE *p_tf)
 		file.nargs++;
 		value = db_strsplit(tmp, ',');
 		strcpy(file.key_name, value[0]);
-		file.val = db_tbldup(&value[1], db_tbllen(&value[1]));
+		if (!(file.val = db_tbldup(&value[1], db_tbllen(&value[1]))))
+			return (-1);
 		db_addorcreate(t_tree, &file);
 		bzero(tmp, MXNAMLEN);
 	}
@@ -80,10 +81,7 @@ int			db_filltree(t_tnode **t_tree, t_dbnfo *sort)
 		if (!(dir = db_strjoin("tbls/",sort->args[i])))
 			return (-1);
 		if (!(p_file = fopen(dir, "r")))
-		{
-			printf("FT_DB ERROR: %s is missing!", sort->args[i]);
-			return (-1);
-		}
+			continue ;
 		db_fillnode(t_tree, p_file);
 		fclose(p_file);
 	}
