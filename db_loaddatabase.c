@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 20:07:04 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/01 18:21:08 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/03 16:46:18 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int			db_fillnode(t_tnode **t_tree, FILE *p_tf)
 	if (!(fscanf(p_tf, "%s", tmp)))
 		return (-1);
 	strcpy(file.tbl_name, tmp);
+	bzero(tmp, MXNAMLEN);
 	if (!(fscanf(p_tf, "%s", tmp)))
 		return (-1);
 	file.nval = atoi(tmp);

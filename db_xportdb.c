@@ -1,37 +1,52 @@
 #include "ft_db.h"
 
-void	db_filetostring(intmax_t num, FILE *p_dbf, char **content)
+void		db_xportentries(t_enode *e_tree, FILE *p_xprt)
 {
-	const char *tmp;
+	size_t i;
 
-	while (fscanf(p_dbf, "%s", content) != EOF)
+	i = -1;
+	if (!e_tree)
+		return ;
+	if (e_tree->left)
+		db_xportentries(e_tree->left, p_xprt);
+	fputs(e_tree->ename, p_xprt);
+	fputs(",",p_xprt);
+	while (e_tree->cmembr[++i])
 	{
-		tmp = strjoin(content, " , ");
-		strdel(content);
-		content = strdup(tmp);
-		strdel(tmp);
+		fputs("\"",p_xprt );
+		fputs(e_tree->cmembr[i], p_xprt);
+		fputs("\"",p_xprt );
+		fputs(",", p_xprt);
 	}
+	fputs("\n", p_xprt);
+	if (e_tree->right)
+		db_xportentries(e_tree->right, p_xprt);
 }
 
-int		db_xportdb(t_tnode *t_tree)
+void		db_xporttbls(t_tnode *t_tree, t_dbnfo *info, FILE *p_xprt)
 {
-	FILE *p_dbf;
-	size_t len;
-	char content[MXNAMLEN];
-	struct stat st = {0};
+	if (!t_tree)
+		return ;
+	if (t_tree->left)
+		db_xporttbls(t_tree, info, p_xprt);
+	db_xportentries(t_tree->entries, p_xprt);
+	if (t_tree->right)
+		db_xporttbls(t_tree, info, p_xprt);
+}
 
-	len = 0;
-	if (!(p_dbf = fopen("rtt.db", "rb+")))
+void		db_xportdb(t_tnode *t_tree, t_dbnfo *info)
+{
+	size_t	len;
+	FILE	*p_xprt;
+
+	if (!(p_xprt = fopen(info->tbl_name, "wb+")))
 	{
-		printf("%s error %s trouble exporting db", G_TSYM, G_EDIV);
-		return (-1);
+		printf("%s: issues exporting db to: %s",G_TSYM, info->tbl_name);
+		return ;
 	}
-	db_ttreelen(t_tree, &len);
-	db_filetostring(len, p_dbf, &content);
-	if (stat("newdir", &st) == -1)
-		mkdir("newdir");
-	snprintf(content, sizeof(content), "newdir/exported.db", getpid());
-	fclose(p_dbf);
-	return (0);
+	db_xporttbls(t_tree, info, p_xprt);
+
+	fputs("\n", p_xprt);
+	fclose(p_xprt);
 }
 
