@@ -11,7 +11,7 @@ void		db_xportentries(t_enode *e_tree, char *tbl_name, FILE *p_xprt)
 		db_xportentries(e_tree->left, tbl_name, p_xprt);
 	fputs("\"",p_xprt );
 	fputs(tbl_name, p_xprt);
-	fputs("\"",p_xprt );
+	fputs("\",",p_xprt );
 	fputs("\"",p_xprt );
 	fputs(e_tree->ename, p_xprt);
 	fputs("\"",p_xprt );

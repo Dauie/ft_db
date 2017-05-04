@@ -6,11 +6,8 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:40:14 by rlutt             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2017/05/03 18:10:32 by rlutt            ###   ########.fr       */
-=======
+/*   Updated: 2017/05/04 12:21:48 by rlutt            ###   ########.fr       */
 /*   Updated: 2017/05/01 14:37:33 by rlutt            ###   ########.fr       */
->>>>>>> 6f1af30dfec72f5d5ca36165edab9159a97c69c5
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +15,6 @@
 
 void	db_printhelp(void)
 {
-<<<<<<< HEAD
 	printf("./ft_db -mode [table / dir] [key] [value / new value ...]\n");
 	printf("	_________________________________\n");
 	printf("	|   \033[01;31m%s\033[0m      \033[22;31mZEN\033[0m \033[01;31m%s\033[0m  \033[22;31mDATA\033[0m      \033[01;31m%s\033[0m   |\n", G_EDIV, G_TSYM, G_EDIV);
@@ -36,7 +32,6 @@ void	db_printhelp(void)
 	printf("	|  \033[01;31m-pe\033[0m :   print entry          |\n");
 	printf("	|  \033[01;31m-xe\033[0m :   export db            |\n");
 	printf("	_________________________________\n");
-=======
 	printf("./ft_db -mode [table] [key] [value / new value ...]\n");
 	printf("	________________________________\n");
 	printf("	%s                               %s\n", G_DLIN, G_DLIN);
@@ -58,7 +53,6 @@ void	db_printhelp(void)
 	printf("	%s  \033[22;31m-xe\033[0m :   export entry         %s\n", G_DLIN, G_DLIN);
 	printf("	%s                               %s\n", G_DLIN, G_DLIN);
 	printf("	%s_______________________________%s\n", G_DLIN, G_DLIN);
->>>>>>> 6f1af30dfec72f5d5ca36165edab9159a97c69c5
 }
 
 void	db_printdb(t_tnode *t_tree)
