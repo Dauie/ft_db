@@ -6,13 +6,14 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 13:01:36 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/01 18:15:31 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/04 11:31:37 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_db.h"
 
-void		db_delvalue(t_tnode *t_tree, t_dbnfo *info)
+
+void		db_deletevalue(t_tnode *t_tree, t_dbnfo *info)
 {
 	/*tbldel the old tbl*/
 	t_tnode *table;
@@ -33,7 +34,7 @@ void		db_delvalue(t_tnode *t_tree, t_dbnfo *info)
 	entry->cmembr = db_tblrmline(entry->cmembr, *info->val, db_tbllen(entry->cmembr));
 }
 
-void		db_deltbl(t_dbnfo *info)
+void		db_deletetbl(t_dbnfo *info)
 {
 	int		ret;
 	char	*path;

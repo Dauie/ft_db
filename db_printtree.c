@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/12 19:08:20 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/03 17:26:08 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/03 18:18:39 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void 	db_printetree(t_enode *e_tree)
 		return ;
 	if (e_tree->left)
 		db_printetree(e_tree->left);
-	printf("%s	%s%s:",G_DLIN, G_ESYM, e_tree->ename);
+	printf("%s	%s %s:",G_DLIN, G_ESYM, e_tree->ename);
 	int i = -1;
 	while (e_tree->cmembr[++i])
 		printf(" %s %s", e_tree->cmembr[i], G_EDIV);

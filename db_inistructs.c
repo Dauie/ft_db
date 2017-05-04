@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 20:54:58 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/01 17:58:55 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/04 11:27:40 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ void	db_initdbnfo(t_dbnfo *db)
 	db->val_act = false;
 	db->nval_act = false;
 	db->mode = NRML;
+}
+
+void	db_cleandbnfo(t_dbnfo *db)
+{
+	if (db->args)
+		db_tbldel(db->args);
+	if (db->val)
+		db_tbldel(db->val);
+
 }
 
 void	db_inittnode(t_tnode *elem)

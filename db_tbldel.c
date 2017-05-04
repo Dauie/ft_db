@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/01 14:24:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/04/25 14:28:25 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/04 11:31:28 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void		db_tbldel(char **tbl)
 	tmp = tbl;
 	while (tmp[i])
 	{
-		free(tmp[i]);
+		if (tmp[i])
+			free(tmp[i]);
 		i++;
 	}
 	free(tbl);

@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/01 18:29:22 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/04 11:29:26 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
  *3. make a delete entry
  *4. make more robust printing options
  * */
-
 
 #include "ft_db.h"
 
@@ -39,10 +38,8 @@ static int	db_parseflag(t_dbnfo *db)
 			db->mode = PRNT_NTRY;
 		else if (strcmp(db->args[0], "-pd") == 0)
 			db->mode = PRNT_DB;
-		else if (strcmp(db->args[0], "-xt") == 0)
-			db->mode = XPRT_TBL;
-		else if (strcmp(db->args[0], "-xe") == 0)
-			db->mode = XPRT_NTRY;
+		else if (strcmp(db->args[0], "-xd") == 0)
+			db->mode = XPRT_DB;
 		if (db->mode > 0)
 		{	
 			db->tbln_act = true;
@@ -121,7 +118,9 @@ int		db_modemaster(t_tnode **t_tree, t_dbnfo *db)
 	else if (db->mode == PRNT_NTRY)
 		db_printentry(*t_tree, db);
 	else if (db->mode == DEL_VAL)
-		db_delvalue(*t_tree, db);
+		db_deletevalue(*t_tree, db);
+	else if (db->mode == XPRT_DB)
+		db_xportdb(*t_tree, db);
 /*	else if (db->mode == EDIT_NTRY)
 		db_editenoder();
 	else if (db->mode == DEL_NTRY)
@@ -152,11 +151,13 @@ int			main(int ac, char **av)
 		db_modemaster(&t_tree, &db);
 		db_savedb(&t_tree, &db);
 		if (db.mode == DEL_TBL)
-			db_deltbl(&db);
+			db_deletetbl(&db);
 		/*
 		*  2.If there is DB already. Load it.
 		*   3. Carry out operation given by user.
 		*/
+		db_cleartree(&t_tree);
+		db_cleandbnfo(&db);
 		return (1);
 	}
 	else
