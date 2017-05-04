@@ -15,24 +15,27 @@
 
 void	db_printhelp(void)
 {
-	printf("./ft_db -mode [table / dir] [key] [value / new value ...]\n");
-	printf("	_________________________________\n");
-	printf("	|   \033[01;31m%s\033[0m      \033[22;31mZEN\033[0m \033[01;31m%s\033[0m  \033[22;31mDATA\033[0m      \033[01;31m%s\033[0m   |\n", G_EDIV, G_TSYM, G_EDIV);
-	printf("	|                               |\n");
-	printf("	|  \033[22;31m%s\033[0m :	table symbol            |\n", G_TSYM);
-	printf("	|  \033[22;31m%s\033[0m :	entry symbol            |\n", G_ESYM);
-	printf("	|  \033[01;31m-_-_-_-_\033[0m \033[22;31mLegend\033[0m \033[01;31m-_-_-_-_\033[0m     |\n");
-	printf("	|                               |\n");
-	printf("	|  \033[01;31m-ae\033[0m :   add entry            |\n");
-	printf("	|  \033[01;31m-dt\033[0m :   delete table         |\n");
-	printf("	|  \033[01;31m-dt\033[0m :   delete entry         |\n");
-	printf("	|  \033[01;31m-dv\033[0m :   delete entry's value |\n");
-	printf("	|  \033[01;31m-pd\033[0m :   print entire DB      |\n");
-	printf("	|  \033[01;31m-pt\033[0m :   print table          |\n");
-	printf("	|  \033[01;31m-ptm\033[0m:   print table info     |\n");
-	printf("	|  \033[01;31m-pe\033[0m :   print entry          |\n");
-	printf("	|  \033[01;31m-xe\033[0m :   export db            |\n");
-	printf("	_________________________________\n");
+		printf("./ft_db -mode [table] [key] [value / new value ...]\n");
+  	printf("	________________________________\n");
+  	printf("	%s                               %s\n", G_DLIN, G_DLIN);
+ 	printf("	%s   \033[22;31m%s\033[0m      \033[01;31mZEN\033[0m \033[22;31m%s\033[0m  \033[01;31mDATA\033[0m      \033[22;31m%s\033[0m   %s\n", G_DLIN,  G_EDIV, G_TSYM, G_EDIV, G_DLIN);
+ 	printf("	%s                               %s\n", G_DLIN, G_DLIN);
+ 	printf("	%s  \033[22;31m%s\033[0m :	table symbol            %s\n", G_DLIN, G_TSYM, G_DLIN);
+ 	printf("	%s  \033[22;31m%s\033[0m :	entry symbol            %s\n", G_DLIN, G_ESYM, G_DLIN);
+ 	printf("	%s  \033[22;31m-_-_-_-_\033[0m \033[01;31mLegend\033[0m \033[22;31m_-_-_-_-\033[0m     %s\n", G_DLIN, G_DLIN);
+  	printf("	%s                               %s\n", G_DLIN, G_DLIN);
+ 	printf("	%s  \033[22;31m-ae\033[0m :   add entry            %s\n", G_DLIN, G_DLIN);
+ 	printf("	%s  \033[22;31m-dt\033[0m :   delete table         %s\n", G_DLIN, G_DLIN);
+ 	printf("	%s  \033[22;31m-de\033[0m :   delete entry         %s\n", G_DLIN, G_DLIN);
+ 	printf("	%s  \033[22;31m-dv\033[0m :   delete entry's value %s\n", G_DLIN, G_DLIN);
+ 	printf("	%s  \033[22;31m-pd\033[0m :   print entire DB      %s\n", G_DLIN, G_DLIN);
+ 	printf("	%s  \033[22;31m-pt\033[0m :   print table          %s\n", G_DLIN, G_DLIN);
+ 	printf("	%s  \033[22;31m-ptm\033[0m:   print table info     %s\n", G_DLIN, G_DLIN);
+ 	printf("	%s  \033[22;31m-pe\033[0m :   print entry          %s\n", G_DLIN, G_DLIN);
+ 	printf("	%s  \033[22;31m-xt\033[0m :   export table         %s\n", G_DLIN, G_DLIN);
+ 	printf("	%s  \033[22;31m-xe\033[0m :   export entry         %s\n", G_DLIN, G_DLIN);
+  	printf("	%s                               %s\n", G_DLIN, G_DLIN);
+  	printf("	%s_______________________________%s\n", G_DLIN, G_DLIN);
 }
 
 void	db_printdb(t_tnode *t_tree)
@@ -110,4 +113,3 @@ void	db_printentry(t_tnode *t_tree, t_dbnfo *info)
 		printf("%s %s", entry->cmembr[i], G_EDIV);
 	printf("\n");
 }
-
