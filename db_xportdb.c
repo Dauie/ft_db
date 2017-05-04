@@ -36,7 +36,6 @@ void		db_xporttbls(t_tnode *t_tree, t_dbnfo *info, FILE *p_xprt)
 
 void		db_xportdb(t_tnode *t_tree, t_dbnfo *info)
 {
-	size_t	len;
 	FILE	*p_xprt;
 
 	if (!(p_xprt = fopen(info->tbl_name, "wb+")))

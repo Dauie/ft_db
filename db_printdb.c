@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:40:14 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/01 14:37:33 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/03 17:24:13 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	db_printdb(t_tnode *t_tree)
 		return ;
 	if (t_tree->left)
 		db_printdb(t_tree->left);
-	printf("%s: %s\n", G_TSYM, t_tree->tbl_name);
+	printf("%s %s: %s\n",G_TLIN, G_TSYM, t_tree->tbl_name);
 	db_printetree(t_tree->entries);
 	if (t_tree->right)
 		db_printdb(t_tree->right);

@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/01 17:37:27 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/03 17:25:36 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 static char G_TSYM[] = "\u0950";
 static char G_ESYM[] = "\u06de";
 static char G_EDIV[] = "\u0700";
+static char G_TLIN[] = "\u20E7";
+static char G_DLIN[] = "\u23B8";
 #define MXNAMLEN 24
 
 typedef	enum			s_mode
