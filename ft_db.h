@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 19:54:05 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/04 12:05:57 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/04 12:50:48 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ typedef	enum			s_mode
 	NRML,
 	PRNT_DB,
 	XPRT_DB,
+	DEL_NTRY,
 	DEL_TBL,
 	PRNT_TBL,
 	PRNT_TBLM,
 	PRNT_NTRY,
 	ADD_NTRY,
 	DEL_VAL,
-	DEL_NTRY,
 	PRNT_NTRYM,
 }						t_mode;
 

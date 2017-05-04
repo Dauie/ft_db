@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/04 11:29:26 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/04 12:49:45 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,12 +121,6 @@ int		db_modemaster(t_tnode **t_tree, t_dbnfo *db)
 		db_deletevalue(*t_tree, db);
 	else if (db->mode == XPRT_DB)
 		db_xportdb(*t_tree, db);
-/*	else if (db->mode == EDIT_NTRY)
-		db_editenoder();
-	else if (db->mode == DEL_NTRY)
-		db_clearetree(tree);
-	else if (db->mode == DEL_TBL)
-		ls_cleartree(tree);*/
 	else
 		return(-1);
 	return (0);
