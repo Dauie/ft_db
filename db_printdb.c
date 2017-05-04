@@ -15,20 +15,24 @@
 void	db_printhelp(void)
 {
 	printf("./ft_db -mode [table] [key] [value / new value ...]\n");
-	printf("%s	ZEN %s  DATA	%s\n\n", G_EDIV, G_TSYM, G_EDIV);
-	printf("%s :	table symbol\n", G_TSYM);
-	printf("%s :	entry symbol\n\n", G_ESYM);
-	printf("-_-_-_-_ Legend -_-_-_-_\n\n");
-	printf("-ae :	add entry\n");
-	printf("-dt :	delete table\en");
-	printf("-de :	delete entry\n");
-	printf("-dv :	delete entry's value\en");
-	printf("-pd :	print entire DB\n");
-	printf("-pt :	print table\n");
-	printf("-ptm:	print table info\n");
-	printf("-pe :	print entry\n");
-	printf("-xt :	export table\n");
-	printf("-xe :	export entry\n");
+	printf("	_________________________________\n");
+	printf("	|   \033[01;31m%s\033[0m      \033[22;31mZEN\033[0m \033[01;31m%s\033[0m  \033[22;31mDATA\033[0m      \033[01;31m%s\033[0m   |\n", G_EDIV, G_TSYM, G_EDIV);
+	printf("	|                               |\n");
+	printf("	|  \033[22;31m%s\033[0m :	table symbol            |\n", G_TSYM);
+	printf("	|  \033[22;31m%s\033[0m :	entry symbol            |\n", G_ESYM);
+	printf("	|  \033[01;31m-_-_-_-_\033[0m \033[22;31mLegend\033[0m \033[01;31m-_-_-_-_\033[0m     |\n");
+	printf("	|                               |\n");
+	printf("	|  \033[01;31m-ae\033[0m :   add entry            |\n");
+	printf("	|  \033[01;31m-dt\033[0m :   delete table         |\n");
+	printf("	|  \033[01;31m-de\033[0m :   delete entry         |\n");
+	printf("	|  \033[01;31m-dv\033[0m :   delete entry's value |\n");
+	printf("	|  \033[01;31m-pd\033[0m :   print entire DB      |\n");
+	printf("	|  \033[01;31m-pt\033[0m :   print table          |\n");
+	printf("	|  \033[01;31m-ptm\033[0m:   print table info     |\n");
+	printf("	|  \033[01;31m-pe\033[0m :   print entry          |\n");
+	printf("	|  \033[01;31m-xt\033[0m :   export table         |\n");
+	printf("	|  \033[01;31m-xe\033[0m :   export entry         |\n");
+	printf("	_________________________________\n");
 }
 
 void	db_printdb(t_tnode *t_tree)
