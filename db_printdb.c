@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:40:14 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/04 12:27:12 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/04 12:54:35 by rlutt            ###   ########.fr       */
 /*   Updated: 2017/05/01 14:37:33 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -25,6 +25,7 @@ void	db_printhelp(void)
 	printf("	|                               |\n");
 	printf("	|  \033[01;31m-ae\033[0m :   add entry            |\n");
 	printf("	|  \033[01;31m-dt\033[0m :   delete table         |\n");
+	printf("	|  \033[01;31m-dt\033[0m :   delete entry         |\n");
 	printf("	|  \033[01;31m-dv\033[0m :   delete entry's value |\n");
 	printf("	|  \033[01;31m-pd\033[0m :   print entire DB      |\n");
 	printf("	|  \033[01;31m-pt\033[0m :   print table          |\n");
