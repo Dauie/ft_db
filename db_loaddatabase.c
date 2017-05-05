@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 20:07:04 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/04 17:23:19 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/04 20:20:07 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		db_addorcreate(t_tnode **t_tree, t_dbnfo *file)
 		if (!(entry = db_searchenode(table->entries, file)))
 			db_addenoden(&table->entries, file);
 		else
-			db_tbladdl(entry->cmembr, *file->val, db_tbllen(entry->cmembr));
+			entry->cmembr = db_tbladdl(entry->cmembr, *file->val, db_tbllen(entry->cmembr) + 1);
 	}
 	else
 	{
@@ -114,11 +114,13 @@ int				db_populatedb(t_tnode **t_tree, FILE *p_dbf)
 	bzero(tmp, MXNAMLEN);
 	if (!(fscanf(p_dbf, "%s", tmp)))
 		return (-1);
-	sort.ctime = atoi(tmp);
+	if (*tmp != '0')
+		sort.ctime = atoi(tmp);
 	bzero(tmp, MXNAMLEN);
 	if (!(fscanf(p_dbf, "%s", tmp)))
 		return (-1);
-	sort.mtime = atoi(tmp);
+	if (*tmp != '0')
+		sort.mtime = atoi(tmp);
 	bzero(tmp, MXNAMLEN);
 	sort.nargs = sort.nval;
 	while (fscanf(p_dbf, "%s", tmp) && *tmp != '\0')

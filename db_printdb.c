@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:40:14 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/04 12:54:35 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/04 20:26:48 by rlutt            ###   ########.fr       */
 /*   Updated: 2017/05/01 14:37:33 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -32,8 +32,7 @@ void	db_printhelp(void)
  	printf("	%s  \033[22;31m-pt\033[0m :   print table          %s\n", G_DLIN, G_DLIN);
  	printf("	%s  \033[22;31m-ptm\033[0m:   print table info     %s\n", G_DLIN, G_DLIN);
  	printf("	%s  \033[22;31m-pe\033[0m :   print entry          %s\n", G_DLIN, G_DLIN);
- 	printf("	%s  \033[22;31m-xt\033[0m :   export table         %s\n", G_DLIN, G_DLIN);
- 	printf("	%s  \033[22;31m-xe\033[0m :   export entry         %s\n", G_DLIN, G_DLIN);
+ 	printf("	%s  \033[22;31m-xd\033[0m :   export database      %s\n", G_DLIN, G_DLIN);
   	printf("	%s                               %s\n", G_DLIN, G_DLIN);
   	printf("	%s_______________________________%s\n", G_DLIN, G_DLIN);
 }
@@ -57,7 +56,7 @@ void db_printtable(t_tnode *t_tree, t_dbnfo *info)
 	node = NULL;
 	if (!(node = db_searchtnode(t_tree, info)))
 	{
-		printf("ft_db: ERROR. Table not found.");
+		printf("ft_db: ERROR. Table not found.\n");
 		return ;
 	}
 	printf("%s  : %s\n", G_TSYM, node->tbl_name);
@@ -71,7 +70,7 @@ void	db_printtblmeta(t_tnode *t_tree, t_dbnfo *info)
 	table = NULL;
 	if (!(table = db_searchtnode(t_tree, info)))
 	{
-		printf("ft_db: ERROR. Table not found.");
+		printf("ft_db: ERROR. Table not found.\n");
 		return ;
 	}
 	printf("%s: %s\n",G_TSYM, table->tbl_name);
@@ -99,12 +98,12 @@ void	db_printentry(t_tnode *t_tree, t_dbnfo *info)
 	entry = NULL;
 	if (!(table = db_searchtnode(t_tree, info)))
 	{
-		printf("ft_db: ERROR. Table not found.");
+		printf("ft_db: ERROR. Table not found.\n");
 		return ;
 	}
 	if (!(entry = db_searchenode(table->entries, info)))
 	{
-		printf("ft_db: ERROR. Entry not found.");
+		printf("ft_db: ERROR. Entry not found.\n");
 		return ;
 	}
 	printf("%s: %s\n", G_ESYM, entry->ename);

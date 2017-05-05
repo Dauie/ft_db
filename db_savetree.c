@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/29 14:23:10 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/04 12:47:48 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/04 20:21:53 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void		db_saveentrylist(t_tnode *t_tree, t_dbnfo *info)
 		return ;
 	if (!(p_tf = fopen(filename, "wb+")))
 	{
-		printf("%s: %s is corrupt or missing",G_TSYM, filename);
+		printf("%s: %s is corrupt or missing\n",G_TSYM, filename);
 		return ;
 	}
 	db_etreelen(t_tree->entries, &len);
@@ -100,7 +100,7 @@ int			db_savedb(t_tnode **t_tree, t_dbnfo *info)
 	len = 0;
 	if (!(p_dbf = fopen("rtt.db", "wb+")))
 	{
-		printf("%s error %s trouble saving db", G_TSYM, G_EDIV);
+		printf("%s error %s trouble saving db\n", G_TSYM, G_EDIV);
 		return (-1);
 	}
 	db_ttreelen(*t_tree, &len);
