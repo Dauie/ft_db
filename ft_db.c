@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 12:00:02 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/04 20:30:06 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/04 21:13:20 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,15 @@ static int	db_parseflag(t_dbnfo *db)
 static int		db_verifyinput(t_dbnfo *db)
 {
 	if (db->tbl_name[0] == '\0' && db->mode > 1)
-		printf("ft_db: table name is required\nusage: ft_db [-ae -dt -pt -xd ...] [table / dir] [key] [value.....]\n --help for more\n");
+		printf("ft_db: table name is required\nusage: ft_db [-ae -ee -dt -de ...] [table] [key] [value] [new value]\n --help for more\n");
 	else if (db->key_name[0] == '\0' && db->mode > 6)
-		printf("ft_db: entry name is required\nusage: ft_db [-ae -dt -pt -xd ...] [table / dir] [key] [value.....]\n --help for more\n");
+		printf("ft_db: key name is required\nusage: ft_db [-ae -ee -dt -de ...] [table] [key] [value] [new value]\n --help for more\n");
 	else if (!db->val && db->mode != DEL_TBL && db->mode > 6)
-		printf("ft_db: value for the entry is required\nusage: ft_db [-ae -dt -pt -xd ...] [table / dir] [key] [value.....]\n --help for more\n");
+	{
+		printf("ft_db: value is required for key\nusage: ft_db [-ae -ee -dt -de ...] [table] [key] [value] [new value]\n --help for more\n");
+		if (db->mode == DEL_VAL)
+			return (0);
+	}
 	return(-1);
 }
 

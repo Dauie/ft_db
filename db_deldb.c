@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 13:01:36 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/04 11:31:37 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/04 21:06:32 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void		db_deletevalue(t_tnode *t_tree, t_dbnfo *info)
 		printf("ft_db: ERROR. Entry not found.\n");
 		return ;
 	}
-	entry->cmembr = db_tblrmline(entry->cmembr, *info->val, db_tbllen(entry->cmembr));
+	if (!info->val[0])
+		return ;
+	entry->cmembr = db_tblrmline(entry->cmembr, info->val[0], db_tbllen(entry->cmembr));
 }
 
 void		db_deletetbl(t_dbnfo *info)
