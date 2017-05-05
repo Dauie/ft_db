@@ -6,7 +6,7 @@
 /*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 20:07:04 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/03 16:46:18 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/05/04 17:23:19 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 void		db_addorcreate(t_tnode **t_tree, t_dbnfo *file)
 {
 	t_tnode *table;
+	t_enode *entry;
 
+	entry = NULL;
 	table = NULL;
 	if (*t_tree != NULL && (table = db_searchtnode(*t_tree, file)))
+	{
+		if (!(entry = db_searchenode(table->entries, file)))
 			db_addenoden(&table->entries, file);
+		else
+			db_tbladdl(entry->cmembr, *file->val, db_tbllen(entry->cmembr));
+	}
 	else
 	{
 		db_addtnoden(t_tree, file);
