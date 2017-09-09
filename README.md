@@ -1,4 +1,4 @@
-##zenData##
+## zenData
 
 zenData or ft_db is a small relational database written from the ground up in C.
 
