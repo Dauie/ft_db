@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   db_printdb.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: rlutt <rlutt@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:40:14 by rlutt             #+#    #+#             */
-/*   Updated: 2017/05/04 20:26:48 by rlutt            ###   ########.fr       */
-/*   Updated: 2017/05/01 14:37:33 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/09/09 12:28:58 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "ft_db.h"
 
@@ -18,10 +18,10 @@ void	db_printhelp(void)
 		printf("./ft_db -mode [table] [key] [value / new value ...]\n");
   	printf("	________________________________\n");
   	printf("	%s                               %s\n", G_DLIN, G_DLIN);
- 	printf("	%s   \033[22;31m%s\033[0m      \033[01;31mZEN\033[0m \033[22;31m%s\033[0m  \033[01;31mDATA\033[0m      \033[22;31m%s\033[0m   %s\n", G_DLIN,  G_EDIV, G_TSYM, G_EDIV, G_DLIN);
+ 	printf("	%s   \033[22;31m%s\033[0m      \033[01;31mZEN\033[0m\033[22;31m%s\033[0m\033[01;31mDATA\033[0m      \033[22;31m%s\033[0m   %s\n", G_DLIN,  G_EDIV, G_TSYM, G_EDIV, G_DLIN);
  	printf("	%s                               %s\n", G_DLIN, G_DLIN);
- 	printf("	%s  \033[22;31m%s\033[0m :	table symbol            %s\n", G_DLIN, G_TSYM, G_DLIN);
- 	printf("	%s  \033[22;31m%s\033[0m :	entry symbol            %s\n", G_DLIN, G_ESYM, G_DLIN);
+ 	printf("	%s  \033[22;31m%s\033[0m :	table symbol           %s\n", G_DLIN, G_TSYM, G_DLIN);
+ 	printf("	%s  \033[22;31m%s\033[0m :	entry symbol           %s\n", G_DLIN, G_ESYM, G_DLIN);
  	printf("	%s  \033[22;31m-_-_-_-_\033[0m \033[01;31mLegend\033[0m \033[22;31m_-_-_-_-\033[0m     %s\n", G_DLIN, G_DLIN);
   	printf("	%s                               %s\n", G_DLIN, G_DLIN);
  	printf("	%s  \033[22;31m-ae\033[0m :   add entry            %s\n", G_DLIN, G_DLIN);
