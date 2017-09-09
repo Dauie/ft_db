@@ -1,5 +1,8 @@
 ## zenData
 
+zenData or ft_db is a small relational database written from the ground up
+in C.
+
 The database is designed to use a dual binary tree system in which there is a 
 tree that is traversed to find a specific table, once found the 'data' for that 
 node contains the second tree filled with that table's features.
