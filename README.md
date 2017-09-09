@@ -8,5 +8,5 @@ contains the second tree filled with that table's features.
 
 The database has a method for viewing all of its tables, deleteing whole tables or
 specific entries, and also exporting to CSV.
-![example]()
+![example](https://github.com/Dauie/ft_db/blob/master/ssdb.png)
 This was a sprint project written in 3 weeks with my partner Keenan Romain (https://github.com/keenanromain).
